@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-Up</title>
+  <link rel="stylesheet" href="styles/signup.css">
+  <script defer src="scripts/sign_up_validation.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="illustration">
+      <img src="assets/illustration-placeholder.png" alt="Illustration of a person signing up">
+    </div>
+    <div class="form-container">
+      <div class="logo">
+        <img src="assets/Scroll-removebg-preview.png" alt="Scroll Logo" style="max-width: 200px; margin: 0 auto; display: block;">
+      </div>
+      <h2>Create an Account</h2>
+
+      <!-- Error message placeholder -->
+      <span class="error" id="error-message" style="color: red; font-size: 14px;"></span>
+
+      <!-- Form -->
+      <form id="signupForm" novalidate>
+        <!-- Display Name -->
+        <div class="form-group">
+          <label for="displayName">Name</label>
+          <input type="text" id="displayName" name="displayName" placeholder="Enter your preferred name" required>
+        </div>
+        <!-- Username Field -->
+        <div class="form-group">
+          <label for="name">Username</label>
+          <input type="text" id="name" name="username" placeholder="Enter your username" required>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter password" required minlength="8">
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="ConfirmPassword" placeholder="Re-enter password" required>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="form-group checkbox">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">
+            By registering your details, you agree with our
+            <a href="terms.html">Terms & Conditions</a> and
+            <a href="privacy.html">Privacy and Cookie Policy</a>.
+          </label>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-actions">
+          <button type="submit" class="register-button" name="signUp">Register</button>
+          <button type="button" class="sign-in-button" onclick="window.location.href='Login.html'">Sign In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

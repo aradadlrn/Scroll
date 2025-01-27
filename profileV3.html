@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/profileV3.css">
+  <script src="./scripts/ACTION.js" defer></script>
+  <script src="./scripts/modal-upload.js" defer></script>
+  <script src="./scripts/modal-homepage.js" defer></script>
+  <script src="./scripts/Homepage.js" defer></script>
+  <script src="./scripts/profile.js" defer></script>
+
+  <title>SCROLL</title>
+</head>
+<body>
+  <div class="main-container">
+      <div class="header-col search-col"> <!-- rename from "search-area" to "search-col" -->
+        
+        <!-- The search box itself -->
+        <div class="search-box">
+          <img class="icon-search" src="./assets/icon-search0.svg" />
+          <input type="text" placeholder="Search" />
+        </div>
+      </div>
+    </header>
+    
+    <!-- ===== LEFT SIDEBAR ===== -->
+    <aside class="sidebar">
+      <!-- LOGO at the top -->
+        <div class="logo">
+          <img src="./assets/logo0.png" alt="Scroll Logo">
+        </div>
+      <!-- Nav links -->
+      <nav class="nav-links">
+        <a href="/Scroll/Homepage.php" class="nav-item">
+          <img class="nav-icon" src="./assets/home-icon0.svg" />
+          <span>For you</span>
+        </a>
+        <a href="/Scroll/profilev3.html" style="text-decoration: none;" class="nav-item">
+          <img class="nav-icon" src="./assets/icon-user0.svg" />
+          <span>Profile</span>
+        </a>
+        <a href="/Scroll/bookmarks.html" style="text-decoration: none;" class="nav-item">
+          <img class="nav-icon" src="./assets/icon-bookmark0.svg" />
+          <span>Bookmarks</span>
+        </a>
+        <a href="/Scroll/settings.html" style="text-decoration: none;" class="nav-item">
+          <img class="nav-icon" src="./assets/icon-settings0.svg" />
+          <span>Settings</span>
+        </a>
+      </nav>
+      <!-- Theme toggle container -->
+        <div class="dark-mode-toggle" id="themeToggle">
+      <!-- The same <img> changes src on click -->
+      <img src="./assets/moon0.svg" class="theme-icon" alt="Toggle theme" />
+    </div>
+
+      <!-- PROFILE CARD at the very bottom -->
+      <div class="profile-card">
+        <div class="profile-avatar">
+          <img id="profileAvatarImg" src="./assets/profilepic.png" alt="Profile Avatar" />
+        </div>
+        <div class="profile-text">
+          <div class="display-name">Display Name</div>
+          <div class="username">@username</div>
+        </div>
+        <div class="profile-options">
+          <img src="./assets/more-horizontal.png" alt="options" id="profileOptions">
+          <div class="dropdown-content" id="dropdownContent">
+            <div class="dropdown-item" id="logoutButton">Log out</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutModal" class="modal">
+      <div class="modal-content">
+        <h2>Logout Confirmation</h2>
+        <p>Are you sure you want to log out?</p>
+        <div class="modal-buttons">
+          <button id="confirmLogout">Yes, Logout</button>
+          <button id="cancelLogout">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile -->
+    <main class="content">
+      <div class="profiletab">
+        <div class="avatar">
+          <img id="avatarImg" src="./assets/profilepic.png" alt="Avatar" />
+        </div>
+        <div class="post-text">
+          <div class="name-container">
+            <div class="display-name2">Display Name</div>
+            <div class="username2">@username</div>
+          </div>
+          
+          <!-- Modal -->
+          <button class="box1">Edit Profile</button>
+          <div class="followers-container">
+            <div class="followers">
+              <span class="bold">9</span> posts
+            </div>
+            <div class="likes">
+              <span class="bold">56</span> likes
+            </div>
+            <div class="likes">
+              <span class="bold">23</span> bookmarks
+            </div>
+          </div>
+          <div class="bio">Bio</div>
+        </div>
+        <div class="share">
+          <img class="icon-send" src="./assets/icon-send0.svg" />
+        </div>
+      </div>
+      <div class="featuredposts">Featured Posts</div>
+      <div class="posts">
+        <div class="post-box">
+          <div class="post-content">
+            <div class="post-title">Book Title</div>
+            <div class="post-desc">Lorem ipsum dolor sit amet consectetur. Hac dui rhoncus sed ultrices massa. Dictumst ipsum cras egestas nunc erat fringilla lorem viverra. Non diam pharetra ornare ullamcorper auctor scelerisque feugiat consectetur. Ornare nullam lacinia proin a.</div>
+          </div>
+          <img class="post-image" src="./assets/little women.jpg" alt="Book Cover 1" />
+        </div>
+        <div class="post-box">
+          <div class="post-content">
+            <div class="post-title">Book Title</div>
+            <div class="post-desc">Lorem ipsum dolor sit amet consectetur. Hac dui rhoncus sed ultrices massa. Dictumst ipsum cras egestas nunc erat fringilla lorem viverra. Non diam pharetra ornare ullamcorper auctor scelerisque feugiat consectetur. Ornare nullam lacinia proin a.</div>
+          </div>
+          <img class="post-image" src="./assets/book2.jpg" alt="Book Cover 1" />
+        </div>
+        <div class="post-box">
+          <div class="post-content">
+            <div class="post-title">Book Title</div>
+            <div class="post-desc">Lorem ipsum dolor sit amet consectetur. Hac dui rhoncus sed ultrices massa. Dictumst ipsum cras egestas nunc erat fringilla lorem viverra. Non diam pharetra ornare ullamcorper auctor scelerisque feugiat consectetur. Ornare nullam lacinia proin a.</div>
+          </div>
+          <img class="post-image" src="./assets/little women.jpg" alt="Book Cover 1" />
+        </div>
+      </div>
+    </div>   
+    
+      <!-- Modal structure -->
+      <div id="myModal" class="modal">
+        <!-- Modal Content for Edit Profile -->
+        <div class="modal-content1">
+          <!-- Save Button -->
+          <button id="saveButton" class="save-btn">Save</button>
+          <span class="close">&times;</span>
+          <p>Edit Profile</p>
+          <input type="hidden" id="imagePath" name="image_path" value="" />
+          <!-- Profile Picture Upload -->
+          <input type="file" id="profilePic" accept="image/*" onchange="previewImage(event)" />
+          <img id="profilePicPreview" src="" alt="Profile Picture Preview" />
+          <div class="uploadinstructions">Ready for a new look? Click your avatar!</div>
+          <div class="display-name3">Display Name</div>
+          <div class="username3">@username</div>
+          <textarea class="bio-entry" placeholder="Enter your bio here..."></textarea>
+        </div>
+      </div>
+    </main>
+
+    <!-- Upload Button na magoopen ng Upload Popup -->
+    <button id = "openModal" class = "icon-plus">
+      <img src="./assets/icon-plus0.svg" alt="plus"/>
+    </button>
+
+    <!-- Modal structure for Upload -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+          <!-- Modal header -->
+          <div class="modal-header">Create Post
+            <button id = "closeModal" class = "btn btn-close">&times;</button>
+          </div>
+
+          <!-- Second Container for the Requirement Icons + Title + Upload + Description -->
+          <div class="modal-content2">
+            <!-- Left Section -->
+            <div class = "left-container">
+              <!-- Feature Icons -->
+              <div class="icon-wrapper">
+                <img class="req-icon" src="./assets/gg_size.png">
+                <span class="tooltipText">Maximum File Size of 10 MB per Images</span>
+              </div>
+              <div class="icon-wrapper">
+                <img class="req-icon" src="./assets/jpg.png" data-tooltip="JPEG, PNG, and GIF">
+                <span class="tooltipText">JPEG, PNG, and GIF</span>
+              </div>
+              <div class="icon-wrapper">
+                <img class="req-icon" src="./assets/Resolution.png">
+                <span class="tooltipText">Maximum Resolution of 1920x1080 Pixels</span>
+              </div>
+              <div class="icon-wrapper">
+                <img class="req-icon" src="./assets/material-symbols_aspect-ratio.png">
+                <span class="tooltipText">Landscape & Portrait</span>
+              </div>
+              <div class="icon-wrapper">
+                <img class="req-icon" src="./assets/cute.png">
+                <span class="tooltipText">Avoid Offensive & Copyrighted Material.</span>
+              </div>
+              <div class="icon-wrapper">
+                <img class="req-icon" src="./assets/accuracy.png">
+                <span class="tooltipText">Stop Spreading Misinformation</span>
+              </div>
+            </div>
+            <div class="right-container">
+              <!-- Modal Title Container -->
+              <textarea id="titleInput" class="titleInput" name="title" placeholder="What book is on your mind?"></textarea>
+              <!-- Image Uploader Container-->
+              <div class = "modal-image-uploader">
+                <label for="file-input" class="upload-label">
+                  <img id="preview-image" src="./assets/upload.png" alt="Upload Image">
+                  <span>Click to upload an image</span>
+                </label>
+                <input type="file" id="file-input" accept="image/*" style="display: none;">
+              </div>
+
+              <!-- Modal description container -->
+              <textarea id="descriptionInput" class="descInput" name="description" placeholder="Every Scroll has a story. Share yours!"></textarea>
+            </div>
+          </div>
+
+          <!-- Modal footer with a close button -->
+          <div class="modal-footer">
+            <button id="postBtn" class="btn btn-secondary">Post</button>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

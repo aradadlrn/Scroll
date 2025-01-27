@@ -1,0 +1,771 @@
+:root {
+  /* DARK THEME (default) */
+  --body-bg: #121212;
+  --text-color: #ffffff;
+  --header-bg: #1E1E1E;
+  --sidebar-bg: #121716;
+  --sidebar-text: #ffffffd3;
+  --border-color: #2a2a2a;
+  --post-bg: #35554B;
+  --post-text: #b0bec5;
+  --profile-border: #ffffff;
+  --search-box-border: #ffffffc0;
+  --icon-filter: brightness(2);
+  --icon-hover-filter: brightness(2);
+  --icon-plus-filter: brightness(2);
+  --mode-toggle-bg: #263238;
+  --nav-icon-bg: brightness(2);
+  --text-hover-color: #2a2a2a30;
+  --icon-post-color: brightness(0.75);
+}
+
+/* LIGHT THEME OVERRIDES */
+.light {
+  --body-bg: #F0E9E1;
+  --text-color: #111111;
+  --header-bg: #F0E9E1;
+  --sidebar-bg: #F3EAD5;
+  --sidebar-text: #000000;
+  --border-color: #2a2a2a;
+  --post-bg: #D7C8A5;
+  --post-text: #111111;
+  --profile-border: #111111;
+  --search-box-border: #000000;
+  --icon-filter: invert(1) brightness(0);
+  --icon-hover-filter: invert(1);
+  --icon-plus-filter: invert(1);
+  --mode-toggle-bg: #D7C8A5;
+  --nav-icon-bg: invert(1);
+  --text-hover-color: #e6d5b0;
+  --icon-post-color: brightness(1);
+}
+
+/* ========== RESET & BASE STYLES ========== */
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--body-bg);
+  color: var(--text-color);
+  transition: ease-in-out;
+}
+
+/* ========== MAIN LAYOUT (GRID) ========== */
+.main-container {
+  display: grid;
+  grid-template-columns: 220px auto;
+  grid-template-rows: 60px auto;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar content";
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ========== HEADER (TOP BAR) ========== */
+.header {
+  grid-area: header;
+  display: grid;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Search column*/
+.search-col {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+}
+
+/* Search box (oval) */
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  gap: 8px;
+  border: 1px solid var(--search-box-border);
+  border-radius: 40px;
+  padding: 8px 10px;
+  background-color: none;
+}
+.search-box .icon-search {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  /* Use our custom icon filter variable for dark vs. light icons */
+  filter: var(--icon-filter);
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  margin-left: 2px;
+  outline: none;
+  color: var(--text-color);
+  width: 120px;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-right: 1px solid var(--border-color);
+  padding-top: 10px;
+}
+
+.logo {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 140px;
+  height: auto;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  padding: 0 10px;
+  margin-bottom: auto;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: var(--sidebar-text);
+  border-radius: 6px;
+}
+
+.nav-item:hover {
+  background-color: var(--text-hover-color);
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  filter: var(--nav-icon-bg);
+}
+
+/* ========== DARK MODE TOGGLE ========== */
+.dark-mode-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 15px;
+  background-color: var(--mode-toggle-bg);
+}
+
+.theme-icon {
+  width: 24px;
+  height: 24px;
+  filter: var(--icon-filter);
+  transition: filter 0.3s;
+}
+
+/* ========== PROFILE CARD ========== */
+.profile-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px 15px;
+  border: 1px solid var(--profile-border);
+  border-radius: 40px;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+.profile-card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profile-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #90a4ae;
+  margin-right: 10px;
+}
+
+.profile-text {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+}
+
+.display-name {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.username {
+  font-size: 8px;
+  color: #b0bec5;
+}
+
+/* ========== DROPDOWN ========== */
+.profile-options {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  right: 0;
+  bottom: 300%; /* Position the dropdown above the profile */
+  background-color: var(--sidebar-bg);
+  border: 1px solid var(--search-box-border);
+  border-radius: 8px;
+  z-index: 1;
+  min-width: 120px;
+  padding: 8px 0;
+  box-shadow: 0 2px 3px rgb(255, 255, 255);
+  margin-top: 4px; /* Add space between the profile and dropdown */
+}
+
+/* Refined arrow style */
+.dropdown-content::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Position the arrow at the bottom of the dropdown */
+  left: 90%; /* Center the arrow */
+  transform: translateX(-50%); /* Center the arrow horizontally */
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent; /* Sides of the triangle with white color */
+  border-right: 4px solid transparent;
+  border-top: 8px solid var(--sidebar-bg); /* Sharper arrow with larger top border */
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for better definition */
+}
+
+.dropdown-item {
+  padding: 8px 16px;
+  color: var(--sidebar-text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s;
+  font-size: 11px;
+}
+
+.show {
+  display: block; /* Show the dropdown when this class is added */
+}
+
+/* Logout Modal Styles */
+.lModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.lModal-content {
+  background-color: #fff;
+  color: #000000;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  text-align: center;
+}
+
+.lModal-buttons {
+  margin-top: 20px;
+}
+
+.lModal-buttons button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#confirmLogout {
+  background-color: #d44242cb; /* Red color for logout */
+  color: white;
+}
+
+#cancelLogout {
+  background-color: #f0f0f0bb; /* Light gray for cancel */
+  color: #0e0e0e;
+}
+
+#confirmLogout:hover {
+  background-color: #e60000; /* Darker red on hover */
+}
+
+#cancelLogout:hover {
+  background-color: #ddd; /* Darker gray on hover */
+}
+
+/* ========== CONTENT AREA (MAIN) ========== */
+.postContainer {
+  grid-area: content;
+  overflow-y: auto;
+  background-color: var(--body-bg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.realPostContainer {
+  grid-area: content;
+  overflow-y: auto;
+  background-color: var(--body-bg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+/* Sample Post */
+.samplePost {
+  display: flex;
+  background-color: var(--post-bg);
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 15px;
+  width: 80%;
+  min-width: 400px;
+  height: 60%;max-height: 300px;
+  position: relative;
+  overflow: hidden;
+  gap: 20px;
+}
+
+
+.postImage {
+  width: 200px; /* Adjust to your preferred size */
+  height: 200px;
+  overflow: hidden; /* Prevents overflow if the image is too large */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0; /* Optional: adds a background */
+  border-radius: 8px; /* Optional: matches image rounding */
+}
+
+#realPostContainer {
+  display: flex;
+  flex-direction: column; /* Ensures posts stack vertically */
+  gap: 20px; /* Adds spacing between posts */
+  padding: 20px; /* Optional: Adds padding to the container */
+}
+
+.postImage img {
+  max-width: 100%; /* Ensures the image fits inside the container */
+  height: auto; /* Keeps the aspect ratio */
+  border-radius: 8px; /* Adds rounded corners */
+  object-fit: cover; /* Ensures the image fills its container nicely */
+}
+
+.postLeftContainer {
+  flex: 1;
+  background-color: var(--post-bg);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.postCreator {
+  font-size: 0.85em;
+  color: var(--post-text);
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid var(--post-text);
+}
+
+.postTitle {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--post-text);
+}
+
+.postDesc {
+  font-size: 0.9em;
+  color: var(--post-text);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.postAuthor {
+  font-size: 0.85em;
+  color: var(--post-text);
+  margin-top: 15px;
+  padding-bottom: 10px;
+}
+
+.postIcons {
+  display: flex;
+  gap: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+.postIcons img {
+  filter: var(--nav-icon-bg);
+  cursor: pointer;
+}
+
+.postIcons img:hover {
+  filter: var(--icon-hover-filter);
+}
+
+.likeBtn, 
+.commentBtn, 
+.bookmarkBtn {
+  display: flex;
+  gap: 10px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.postRightContainer {
+  background-color: var(--post-text);
+  flex: .75;
+  display: flex;
+  background-color: #D9D9D9;
+}
+
+.postImage {
+  width: 100%;
+  height: 100%;
+  background: url('./assets/sample-image.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+
+/* Button at bottom right */
+.icon-plus {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: none;
+  right: 135px;
+  bottom: 20px;
+  cursor: pointer;
+  background-color: #C95F50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-plus img {
+  width: 75%;
+  height: 75%;
+  filter: var(--icon-plus-filter);
+}
+
+/* ========== MEDIA QUERIES ========== */
+@media (max-width: 768px) {
+  .main-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px auto;
+    grid-template-areas:
+      "header"
+      "content";
+  }
+
+  .sidebar {
+    display: none; /* Hide sidebar on smaller screens */
+  }
+
+  .search-box {
+    width: 90%;
+  }
+
+  .post {
+    width: 90%;
+    min-width: unset;
+  }
+}
+
+/* ================= MODAL ================= */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+/* The actual box style */
+.modal-content {
+  color: var(--text-color);
+  background-color: var(--sidebar-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 1000px;
+  height: 80%;
+  width: 80%;
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  justify-content: space-between; /* Space out elements */
+}
+
+.modal-header {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center; /* Center the "Create Post" text */
+  align-items: center; /* Center vertically */
+  position: relative; /* Make the header a positioned container */
+  top: 10px;
+  padding-bottom: 20px;
+  color: var(--text-color);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007BFF;
+  color: white;
+}
+
+/* Second Container for Icons + Upload + Description */
+.modal-content2 {
+  display: flex; /* Use Flexbox for side-by-side layout */
+  gap: 20px; /* Space between left and right containers */
+  flex: 1; /* Take up remaining space in the modal */
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Left Container - For Feature Icons */
+.left-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Space between icons */
+  align-items: center; /* Align icons to the left */
+  padding: 10px; /* Add some padding */
+  margin-top: 40px;
+  width: 50px; /* Set a fixed width for the icons */
+  filter: var(--nav-icon-bg);
+}
+
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-wrapper .tooltipText {
+  font-size: 12px;
+  font-style: normal;
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  opacity: 0.75;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.icon-wrapper:hover .tooltipText {
+  visibility: visible;
+}
+
+.req-icon {
+  width: 24px; /* Set a fixed width */
+  height: 27px; /* Set a fixed height */
+  cursor: pointer;
+  position: relative; /* Required for tooltip positioning */
+}
+
+.req-icon:hover::after {
+  content: attr(data-tooltip); /* Display the tooltip text */
+  position: absolute;
+  left: 100%; /* Position tooltip to the right of the icon */
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 8px; /* Add some space between the icon and tooltip */
+  padding: 4px 8px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  z-index: 10; /* Ensure the tooltip is above other elements */
+}
+
+/* Right Container */
+.right-container {
+
+  flex: 1; /* Take up remaining space */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between upload and description */
+  padding: 10px; /* Add some padding */
+}
+
+/* Title Input */
+.titleInput {
+  color: var(--text-color);
+  background-color: var(--sidebar-bg);
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  border: 1px solid var(--post-bg);
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/* Image Uploader Styling */
+.modal-image-uploader {
+  filter: var(--nav-icon-bg);
+  padding: 20px;
+  border: 1px dashed var(--post-bg);
+}
+
+.image-uploader {
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.upload-label img {
+  opacity: .5;
+  filter: var(--nav-icon-bg);
+  max-width: 100%;
+  max-height: 100px;
+  border-radius: 8px;
+}
+
+.upload-label span {
+  display: block;
+  margin-top: 10px;
+  color: #888;
+}
+
+/* Description Text Area Styling */
+.descInput {
+  color: var(--text-color);
+  background-color: var(--sidebar-bg);
+  width: 100%;
+  height: 300px;
+  padding: 10px;
+  border: 1px solid var(--post-bg);
+  border-radius: 4px;
+  resize: vertical;
+}
+.error-message {
+  color: #dc3545;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+}
+
+.success-message {
+  color: #28a745;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+}
+
+/* Post button */
+.btn-secondary {
+  display: flex;
+  font-weight: bold;
+  padding: 10px;
+  width: 30%;
+  background-color: var(--post-bg);
+  color: var(--post-text);
+  bottom: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #C95F50;
+}
+
+.btn-close {
+  background-color: transparent;
+  color: var(--post-text);
+  position: absolute; /* Position the close button independently */
+  right: 10px; /* Place it at the right edge */
+  top: 10px; /* Vertically center it relative to the header */
+  transform: translateY(-50%); /* Adjust for perfect centering */
+  font-size: 24px; /* Increase font size for visibility */
+}
+
+.btn-close:hover,
+.btn-close:focus {
+  color: #C95F50;
+  text-decoration: none;
+  cursor: pointer;
+}

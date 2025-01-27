@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Settings</title>
+    <link rel="stylesheet" href="styles/side-nav-layout.css">
+    <link rel="stylesheet" href="styles/settings-style.css">
+    <link rel="stylesheet" href="styles/Homepage.css">
+    <script src="./scripts/ACTION.js" defer></script>
+    <script src="./scripts/settings.js" defer></script>
+    <script src="./scripts/Homepage.js" defer></script>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- ===== LEFT SIDEBAR ===== -->
+        <aside class="sidebar">
+            <!-- LOGO at the top -->
+            <div class="logo">
+                <img src="./assets/logo0.png" alt="Scroll Logo">
+            </div>
+            <!-- Nav links -->
+            <nav class="nav-links">
+                <a href="/Scroll/Homepage.php" style="text-decoration: none;" class="nav-item">
+                    <img class="nav-icon" src="./assets/home-icon0.svg" />
+                    <span>For you</span>
+                </a>
+                <a href="/Scroll/profilev3.html" style="text-decoration: none;" class="nav-item">
+                    <img class="nav-icon" src="./assets/icon-user0.svg" />
+                    <span>Profile</span>
+                </a>
+                <a href="/Scroll/bookmarks.html" style="text-decoration: none;" class="nav-item">
+                    <img class="nav-icon" src="./assets/icon-bookmark0.svg" />
+                    <span>Bookmarks</span>
+                </a>
+                <a href="/Scroll/settings.html" style="text-decoration: none;" class="nav-item">
+                    <img class="nav-icon" src="./assets/icon-settings0.svg" />
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <!-- Theme toggle container -->
+            <div class="dark-mode-toggle" id="themeToggle">
+                <img src="./assets/moon0.svg" class="theme-icon" alt="Toggle theme" />
+            </div>
+
+            <!-- PROFILE CARD at the very bottom -->
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <img id="profileAvatarImg" src="./assets/profilepic.png" alt="Profile Avatar" />
+                </div>
+                <div class="profile-text">
+                    <div class="display-name">Display Name</div>
+                    <div class="username">@username</div>
+                </div>
+                <div class="profile-options">
+                    <img src="./assets/more-horizontal.png" alt="options" id="profileOptions">
+                    <div class="dropdown-content" id="dropdownContent">
+                        <div class="dropdown-item" id="logoutButton">Log out</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Logout Confirmation Modal -->
+        <div id="logoutModal" class="modal">
+            <div class="modal-content">
+                <h2>Logout Confirmation</h2>
+                <p>Are you sure you want to log out?</p>
+                <div class="modal-buttons">
+                    <button id="confirmLogout">Yes, Logout</button>
+                    <button id="cancelLogout">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Content -->
+        <div class="settings-container">
+          <div class="img-container">
+              <img src="assets/avatar_placeholder.png" alt="User avatar">
+          </div>
+      
+          <!-- Basic Info Container (Not a Form) -->
+          <div class="basic-info-container">
+              <div class="name-container">
+                  <label for="full-name">Display Name</label><br>
+                  <div class="full-name"></div>
+              </div>
+              <div class="name-container">
+                <label for="username">UserName</label><br>
+                <div class="settingsUsername"></div>
+              </div>
+          </div>
+      
+          <!-- Change Password Form -->
+          <form class="change-password-container" id="changePasswordForm" action="./php-scripts/settings.php" method="POST">
+              <center>
+                  <p>Change Password</p>
+              </center>
+              <div class="current-password-container">
+                  <label for="current-password">Current Password</label><br>
+                  <input type="password" name="current-password" id="current-password" placeholder="Enter current password">
+              </div>
+              <div class="new-password-container">
+                  <label for="new-password">New Password</label><br>
+                  <input type="password" name="new-password" id="new-password" placeholder="Enter new password">
+              </div>
+              <div class="confirm-password-container">
+                  <label for="confirm-password">Confirm New Password</label><br>
+                  <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm new password">
+              </div>
+              <p id="message"></p>
+              <div class="button-container">
+                <button id="openEditNameModal" class="editNameBtn">Change Display Name</button>
+                <button class="save-button" type="submit">Save Settings</button>
+                <!-- Edit Display name Modal -->
+                <div id="formHolder" class="formHolder">
+                    <div class="formHolderContent">
+                        <form id="displayNameModal" class="displayNameModal" action="./php-scripts/settings.php" method="POST">
+                            <text class="displayNameQuestion">Input your new display name:</text>
+                            <input type="text" id="newDisplayName" name="newDisplayName" placeholder="Enter your new preferred name...">
+                          </form>
+                            <div class="buttonsContainer">
+                                <button id="cancelNew" class="cancelNew" type="button">Cancel</button>
+                                <button type="submit" id="confirmNew" class="confirmNew">Confirm</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+          </form>
+      </div>
+    </div>
+</body>
+
+</html>

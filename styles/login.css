@@ -1,0 +1,227 @@
+/* ===== Global Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== Background Container ===== */
+.background-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #eae9ec;
+}
+
+/* ===== Main Container ===== */
+.main-container {
+    display: flex;
+    flex-direction: row; /* Side-by-side layout */
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px -10px gray;
+    width: 100%; /* Keep layout compact */
+    max-width: 1400px; /* Set a maximum width */
+    height: 70%; /* Proportional height */
+    max-height: 600px;
+    padding: 20px;
+    overflow: hidden; /* Prevent overflow */
+}
+/* ===== Error Message Styling ===== */
+#error-message {
+    display: block; /* Ensures the error spans across the width */
+    margin-bottom: 10px; /* Add spacing below the error */
+    color: red; /* Set error text color */
+    font-size: 0.85em; /* Adjust font size */
+    text-align: left; /* Align the error message with the input fields */
+    width: 100%; /* Match the width of the input fields or form */
+    max-width: 300px; /* Optional: match input field max-width */
+    padding: 5px 0; /* Optional: add spacing inside */
+}
+
+/* ===== Login Form Container ===== */
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 40px;
+    width: 50%; /* Maintain balance */
+}
+
+/* ===== Form Styling ===== */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center all form elements */
+}
+
+.form-container form {
+    width: 100%;
+}
+
+/* ===== Input Containers ===== */
+.email-address-container, .password-container {
+    font-size: 1em;
+    width: 140%;
+    margin-bottom: 12px; /* Keep spacing compact */
+    background-color: #f4f7f5;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column; /* Stack label above input */
+    align-items: center;
+}
+
+/* ===== Labels ===== */
+.email-address-container label, .password-container label {
+    font-weight: bold;
+    font-size: .9em;
+    color: #333333ab;
+    margin-bottom: 5px;
+    width: 100%; /* Ensure label width matches input */
+    text-align: left; /* Align text to the left */
+}
+
+/* ===== Inputs ===== */
+.email-address-container input, 
+.password-container input {
+    width: 120%; /* Full width for inputs */
+    max-width: 280px; /* Set a maximum width */
+    height: 20px; /* Adjust height for readability */
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em; /* Adjust font size */
+    font-weight: bold;
+    color: #527f5f;
+    padding: 5px; /* Add padding for better usability */
+    text-align: left;
+}
+
+/* Placeholder Styling */
+input::placeholder {
+    color: #aaa;
+    font-weight: normal;
+}
+
+/* ===== Message Container ===== */
+.message-container {
+    margin-bottom: 15px;
+    text-align: left; /* Center-align messages */
+}
+
+.message-container p:first-child {
+    font-size: 2.4em;
+    font-weight: bold;
+    color: #527f5f;
+}
+
+.message-container p:last-child {
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* ===== Buttons ===== */
+button {
+    width: 125%; /* Adjust for compact alignment */
+    max-width: 800px; /* Limit button width */
+    margin: 0 auto;
+    height: 40px;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #527f5f;
+    color: white;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #426d50;
+}
+
+/* ===== Remember Me and Links ===== */
+.remember-me-container {
+    display: flex;
+    align-items: center; /* Vertically align items */
+    justify-content: flex-start; /* Align items to the left */
+    width: 100%; /* Full width of container */
+    max-width: 300px; /* Limit width */
+    margin: 0 auto; /* Center the container */
+    font-size: 0.85em; /* Adjust font size */
+    margin-bottom: 10px; /* Add spacing below */
+    color: #333333ab;
+}
+
+#remember_checkbox {
+    margin-right: 5px; /* Space between checkbox and label */
+}
+
+.remember-me-container a {
+    color: #527f5f; /* Match theme color */
+    text-decoration: none; /* Remove underline for a clean look */
+    font-size: 0.85em; /* Match font size */
+    margin-left: 10px; /* Reduced margin for closer positioning */
+}
+
+.remember-me-container a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+
+form a {
+    font-size: 0.8em;
+    color: #527f5f;
+    text-decoration: none;
+}
+
+form a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Image Container ===== */
+.image-container {
+    width: 50%; /* Maintain half-width for image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 0 25px 25px 0;
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media screen and (max-width: 800px) {
+    .main-container {
+        flex-direction: column; /* Stack content vertically */
+        height: auto;
+        padding: 10px;
+    }
+
+    .login-form-container, .image-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .image-container {
+        display: none; /* Hide image for smaller screens */
+    }
+
+    button {
+        width: 100%; /* Expand buttons to fill container width */
+    }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarks</title>
+    <link rel="stylesheet" href="styles/side-nav-layout.css">
+    <script src="./scripts/modal-homepage.js" defer></script>
+    <script src="./scripts/Homepage.js" defer></script>
+</head>
+
+<body>
+    <div class="main-container bookmark">
+        <!-- ===== LEFT SIDEBAR ===== -->
+        <aside class="sidebar">
+            <!-- LOGO at the top -->
+            <div class="logo">
+                <img src="./assets/logo0.png" alt="Scroll Logo">
+            </div>
+            <!-- Nav links -->
+            <nav class="nav-links">
+                <a href="/Scroll/Homepage.php" class="nav-item">
+                    <img class="nav-icon" src="./assets/home-icon0.svg" />
+                    <span>For you</span>
+                </a>
+                <a href="/Scroll/profilev3.html" style="text-decoration: none;" class="nav-item">
+                    <img class="nav-icon" src="./assets/icon-user0.svg" />
+                    <span>Profile</span>
+                </a>
+                <a href="/Scroll/bookmarks.html" style="text-decoration: none;" class="nav-item">
+                    <img class="nav-icon" src="./assets/icon-bookmark0.svg" />
+                    <span>Bookmarks</span>
+                </a>
+                <a href="/Scroll/settings.html" style="text-decoration: none;" class="nav-item">
+                    <img class="nav-icon" src="./assets/icon-settings0.svg" />
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <!-- Theme toggle container -->
+            <div class="dark-mode-toggle" id="themeToggle">
+                <!-- The same <img> changes src on click -->
+                <img src="./assets/moon0.svg" class="theme-icon" alt="Toggle theme" />
+            </div>
+            <!-- PROFILE CARD at the very bottom -->
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <img id="profileAvatarImg" src="assets/profilepic.png" alt="Profile Avatar" />
+                </div>
+                <div class="profile-text">
+                    <div class="display-name">Display Name</div>
+                    <div class="username">@username</div>
+                </div>
+                <div class="profile-options">
+                    <img src="./assets/more-horizontal.png" alt="options" id="profileOptions">
+                    <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-item" id="logoutButton">Log out</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- Logout Confirmation Modal -->
+            <div id="logoutModal" class="lModal">
+                <div class="lModal-content">
+                <h2>Logout Confirmation</h2>
+                <p>Are you sure you want to log out?</p>
+                <div class="lModal-buttons">
+                    <button id="confirmLogout">Yes, Logout</button>
+                    <button id="cancelLogout">Cancel</button>
+                </div>
+                </div>
+            </div>
+        <div class="bookmarks-container">
+            <h1>Bookmarks</h1>
+            <div class="posts">
+                <div class="post-box">
+                    <div class="post-content">
+                        <div class="post-title">Book Title</div>
+                        <div class="post-desc">Lorem ipsum dolor sit amet consectetur. Hac dui rhoncus sed ultrices
+                            massa. Dictumst ipsum cras egestas nunc erat fringilla lorem viverra. Non diam pharetra
+                            ornare ullamcorper auctor scelerisque feugiat consectetur. Ornare nullam lacinia proin a.
+                        </div>
+                    </div>
+                    <img class="post-image" src="./assets/little women.jpg" alt="Book Cover 1" />
+                </div>
+                <div class="post-box">
+                    <div class="post-content">
+                        <div class="post-title">Book Title</div>
+                        <div class="post-desc">Lorem ipsum dolor sit amet consectetur. Hac dui rhoncus sed ultrices
+                            massa. Dictumst ipsum cras egestas nunc erat fringilla lorem viverra. Non diam pharetra
+                            ornare ullamcorper auctor scelerisque feugiat consectetur. Ornare nullam lacinia proin a.
+                        </div>
+                    </div>
+                    <img class="post-image" src="./assets/book2.jpg" alt="Book Cover 1" />
+                </div>
+                <div class="post-box">
+                    <div class="post-content">
+                        <div class="post-title">Book Title</div>
+                        <div class="post-desc">Lorem ipsum dolor sit amet consectetur. Hac dui rhoncus sed ultrices
+                            massa. Dictumst ipsum cras egestas nunc erat fringilla lorem viverra. Non diam pharetra
+                            ornare ullamcorper auctor scelerisque feugiat consectetur. Ornare nullam lacinia proin a.
+                        </div>
+                    </div>
+                    <img class="post-image" src="./assets/little women.jpg" alt="Book Cover 1" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/ui-mode-toggle.js"></script>
+</body>
+
+</html>

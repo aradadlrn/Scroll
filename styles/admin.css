@@ -1,0 +1,401 @@
+:root {
+  /* DARK THEME (default) */
+  --body-bg: #121212;
+  --text-color: #ffffff;
+  --header-bg: #1E1E1E;
+  --sidebar-bg: #121716;
+  --sidebar-text: #ffffffd3;
+  --border-color: #2a2a2a;
+  --post-bg: #35554B;
+  --post-text: #b0bec5;
+  --profile-border: #ffffff;
+  --search-box-border: #ffffffc0;
+  --icon-filter: brightness(2);
+  --icon-hover-filter: brightness(2);
+  --icon-plus-filter: brightness(2);
+  --mode-toggle-bg: #263238;
+  --nav-icon-bg: brightness(2);
+  --text-hover-color: #2a2a2a30;
+  --icon-post-color: brightness(0.75);
+}
+
+/* LIGHT THEME OVERRIDES */
+.light {
+  --body-bg: #F0E9E1;
+  --text-color: #111111;
+  --header-bg: #F0E9E1;
+  --sidebar-bg: #F3EAD5;
+  --sidebar-text: #000000;
+  --border-color: #2a2a2a;
+  --post-bg: #D7C8A5;
+  --post-text: #111111;
+  --profile-border: #111111;
+  --search-box-border: #000000;
+  --icon-filter: invert(1) brightness(0);
+  --icon-hover-filter: invert(1);
+  --icon-plus-filter: invert(1);
+  --mode-toggle-bg: #D7C8A5;
+  --nav-icon-bg: invert(1);
+  --text-hover-color: #e6d5b0;
+  --icon-post-color: brightness(1);
+}
+
+/* ========== RESET & BASE STYLES ========== */
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--body-bg);
+  color: var(--text-color);
+  transition: ease-in-out;
+}
+
+/* ========== MAIN LAYOUT (GRID) ========== */
+.main-container {
+  display: grid;
+  grid-template-columns: 220px auto;
+  grid-template-rows: 60px auto;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar content";
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-right: 1px solid var(--border-color);
+  padding-top: 10px;
+}
+
+.logo {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 140px;
+  height: auto;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  padding: 0 10px;
+  margin-bottom: auto;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: var(--sidebar-text);
+  border-radius: 6px;
+}
+
+.nav-item:hover {
+  background-color: var(--text-hover-color);
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  filter: var(--nav-icon-bg);
+}
+
+/* ========== DARK MODE TOGGLE ========== */
+.dark-mode-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 15px;
+  background-color: var(--mode-toggle-bg);
+}
+
+.theme-icon {
+  width: 24px;
+  height: 24px;
+  filter: var(--icon-filter);
+  transition: filter 0.3s;
+}
+
+/* ========== PROFILE CARD ========== */
+.profile-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px 15px;
+  border: 1px solid var(--profile-border);
+  border-radius: 40px;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+.profile-card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profile-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #90a4ae;
+  margin-right: 10px;
+}
+
+.profile-text {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+}
+
+.display-name {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.username {
+  font-size: 8px;
+  color: #b0bec5;
+}
+
+/* ========== DROPDOWN ========== */
+.profile-options {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  right: 0;
+  bottom: 300%; /* Position the dropdown above the profile */
+  background-color: var(--sidebar-bg);
+  border: 1px solid var(--search-box-border);
+  border-radius: 8px;
+  z-index: 1;
+  min-width: 120px;
+  padding: 8px 0;
+  box-shadow: 0 2px 3px rgb(255, 255, 255);
+  margin-top: 4px; /* Add space between the profile and dropdown */
+}
+
+/* Refined arrow style */
+.dropdown-content::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Position the arrow at the bottom of the dropdown */
+  left: 90%; /* Center the arrow */
+  transform: translateX(-50%); /* Center the arrow horizontally */
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent; /* Sides of the triangle with white color */
+  border-right: 4px solid transparent;
+  border-top: 8px solid var(--sidebar-bg); /* Sharper arrow with larger top border */
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for better definition */
+}
+
+.dropdown-item {
+  padding: 8px 16px;
+  color: var(--sidebar-text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s;
+  font-size: 11px;
+}
+
+.show {
+  display: block; /* Show the dropdown when this class is added */
+}
+
+/* Logout Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+  background-color: #fff;
+  color: #000000;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#confirmLogout {
+  background-color: #d44242cb; /* Red color for logout */
+  color: white;
+}
+
+#cancelLogout {
+  background-color: #f0f0f0bb; /* Light gray for cancel */
+  color: #0e0e0e;
+}
+
+#confirmLogout:hover {
+  background-color: #e60000; /* Darker red on hover */
+}
+
+#cancelLogout:hover {
+  background-color: #ddd; /* Darker gray on hover */
+}
+
+
+/* ========== MEDIA QUERIES ========== */
+@media (max-width: 768px) {
+  .main-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px auto;
+    grid-template-areas:
+      "header"
+      "content";
+  }
+
+  .sidebar {
+    display: none; /* Hide sidebar on smaller screens */
+  }
+
+  .search-box {
+    width: 90%;
+  }
+
+  .post {
+    width: 90%;
+    min-width: unset;
+  }
+}
+
+/* ========== ADMIN DASHBOARD ========== */
+.content-section {
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.tab-title {
+  text-align: left;
+  margin-bottom: -30px;
+  margin-left: 10px;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+/* Container for 3 totals */
+.totals {
+  display: flex;
+  gap: 18px;
+  flex-direction: row;
+  text-align: center;
+  padding: 10px; /* Add some padding */
+  margin-top: 40px;
+}
+
+.totalUsers, .totalPosts, .totalComments {
+  background-color: var(--sidebar-bg);
+  border: 1px solid var(--post-text);
+  box-shadow: 1px 1px 1px var(--post-text);
+  width: 760px;
+  height: 160px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.totalUsersLabel, .totalPostsLabel, .totalCommentsLabel {
+  padding: 30px;
+  font-size: 20px;
+}
+
+.number {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 25px;
+  color: var(--text-color);
+}
+
+.bottomHalf {
+  display: flex;
+}
+
+.topContainer {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  text-align: center;
+  padding: 10px; /* Add some padding */
+  margin-left: -11px;
+}
+
+.topUsers, .topBooks {
+  background-color: var(--sidebar-bg);
+  border: 1px solid var(--post-text);
+  box-shadow: 1px 1px 1px var(--post-text);
+  width: 759px;
+  height: 350px;
+  margin-left: 10px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.topUsersTitle, .topBooksTitle {
+  padding: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/**/
+
+ol {
+  margin-top: 20px;
+  margin-left: 20px;
+  padding-left: 20px;
+  text-align: left;
+  font-size: 30px;
+}

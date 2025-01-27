@@ -1,0 +1,259 @@
+:root {
+    /* DARK THEME (default) */
+    --body-bg: #121212;
+    --text-color: #ffffff;
+    --header-bg: #1E1E1E;
+    --sidebar-bg: #121716;
+    --sidebar-text: #ffffffd3;
+    --border-color: #2a2a2a;
+    --post-bg: #35554B;
+    --post-text: #b0bec5;
+    --profile-border: #ffffff;
+    --search-box-border: #ffffffc0;
+    --icon-filter: brightness(2);
+    --icon-hover-filter: brightness(2);
+    --icon-plus-filter: brightness(2);
+    --mode-toggle-bg: #263238;
+    --nav-icon-bg: brightness(2);
+    --text-hover-color: #2a2a2a30;
+    --icon-post-color: brightness(0.75);
+    --button: #3d7460;
+  
+    /* Smooth transitions for theme changes */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* LIGHT THEME OVERRIDES */
+  .light {
+    --body-bg: #F0E9E1;
+    --text-color: #111111;
+    --header-bg: #F0E9E1;
+    --sidebar-bg: #F3EAD5;
+    --sidebar-text: #000000;
+    --border-color: #2a2a2a;
+    --post-bg: #D7C8A5;
+    --post-text: #111111;
+    --profile-border: #111111;
+    --search-box-border: #000000;
+    --icon-filter: invert(1) brightness(0);
+    --icon-hover-filter: invert(1);
+    --icon-plus-filter: invert(1);
+    --mode-toggle-bg: #D7C8A5;
+    --nav-icon-bg: invert(1);
+    --text-hover-color: #e6d5b0;
+    --icon-post-color: brightness(1);
+    --button: #beab7f;
+  }
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--body-bg);
+    transition: none;
+}
+
+
+.settings-container {
+    margin-top: 80vh;
+    height: fit-content;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    padding: 50px;
+    background-color: var(--post-bg);
+    border-radius: 25px;
+    box-shadow: 0px 10px 20px -10px black;
+}
+
+.img-container {
+    align-self: center;
+}
+
+.img-container img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: solid var(--input-bg) 3px;
+}
+
+.name-container, .username-container, .current-password-container, .new-password-container, .confirm-password-container {
+    background-color: var(--input-bg);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.change-password-container {
+    margin-top: 20px;
+}
+
+.change-password-container input {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    padding-left: 10px;
+    color: var(--text-color);
+    font-size: 15px;
+    width: 100%;
+}
+
+.settings-container label {
+    color: var(--post-text);
+    padding: 10px;
+}
+
+.settings-container p {
+    margin-bottom: 0px;
+}
+
+.settings-container label {
+    font-size: 0.65em;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button-container button {
+    color: var(--post-text);
+    font-size: 1.0em;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.save-button, .editNameBtn  {
+    background-color: var(--button);
+    margin-top: 25px;
+    width: 300px;
+    border-style: none;
+}
+
+.cancel-button {
+    background-color: transparent;
+}
+
+button:hover {
+    background-color: #c95f50;
+    cursor: pointer;
+}
+
+.name-container input {
+    color: var(--text-color);
+}
+
+/* info */
+.settingsUsername, .full-name {
+    padding-left: 10px;
+}
+
+input::-webkit-input-placeholder {
+    color: rgb(139, 157, 163);
+}
+
+/* Edit display name modal */
+
+/* Modal Background */
+.formHolder {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+.formHolderContent {
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    justify-content: space-between; /* Space out elements */
+}
+
+/* Modal Content */
+.displayNameModal {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+}
+
+/* Modal Title */
+.displayNameQuestion {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Input Field */
+#newDisplayName {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+#newDisplayName:focus {
+    border-color: var(--post-bg);
+    box-shadow: 0 0 5px rgba(205, 253, 208, 0.5);
+}
+
+/* Buttons Container */
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Buttons */
+.cancelNew, .confirmNew {
+    padding: 10px 20px;
+    border: solid var(--input-bg) 2px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Cancel Button */
+.cancelNew {
+    background-color: var(--sidebar-bg);
+    color: #333;
+}
+
+.cancelNew:hover {
+    background-color: #c95f50;
+}
+
+/* Confirm Button */
+.confirmNew {
+    background-color: var(--sidebar-bg);
+    color: white;
+}
+
+.confirmNew:hover {
+    background-color: var(--post-bg);
+}
+
+
