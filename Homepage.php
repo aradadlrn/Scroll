@@ -152,12 +152,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- NOTE: For reference, ito yung dating <main> -->
     <div id="postContainer" class="postContainer">
-      <!-- sample lang pero need ata tanggalin toh tas walang laman para dyan magaappend yung posts, like need talaga from db?-->
       <div id="realPostContainer" class="realPostContainer">
-    <?php
-    $posts = $db->query("SELECT * FROM userpost ORDER BY idUpload DESC")->fetchAll(PDO::FETCH_ASSOC);
+      <!-- Dynamically Insert Posts -->
+      <?php
+      $posts = $db->query("SELECT * FROM userpost ORDER BY idUpload DESC")->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($posts as $post): ?>
+      foreach ($posts as $post): ?>
         <div class="samplePost">
             <div class="postLeftContainer">
                 <div class="postCreator">Created by • <?= htmlspecialchars($post['RegisterId']) ?></div>
