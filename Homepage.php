@@ -163,7 +163,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             p.TitleBook, 
             p.Caption, 
             p.Picture, 
-            (SELECT COUNT(*) FROM likes WHERE idUpload = p.idUpload) AS like_count
+            (SELECT COUNT(*) FROM likes WHERE idUpload = p.idUpload) AS like_count,
+            (SELECT COUNT(*) FROM comments WHERE idUpload = p.idUpload) AS comment_count
         FROM userpost p
         JOIN userregister r ON p.RegisterId = r.RegisterId
         ORDER BY idUpload DESC")->fetchAll(PDO::FETCH_ASSOC);
@@ -179,9 +180,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="postIcons">
                         <img class="likeBtn" src="./assets/heart-nolike.png" onclick="toggleLike(<?= $post['idUpload'] ?>)">
                         <span id="like-count-<?= $post['idUpload'] ?>" class="like-count"><?= htmlspecialchars($post['like_count']) ?></span>
-                        <button class="commentBtn" onclick="toggleComments()">
+                        <button class="commentBtn" onclick="toggleComments(<?= $post['idUpload'] ?>)">
                             <img class="commentBtnImg" src="./assets/icon-message0.svg">
                         </button>
+                        <span id="comment-count-<?= $post['idUpload'] ?>" class="comment-count">
+                          <?= htmlspecialchars($post['comment_count']) ?>
+                        </span>
                         <img class="bookmarkBtn" src="./assets/icon-bookmark0.svg">
                     </div>
                 </div>
@@ -194,9 +198,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <?php endforeach; ?>
         </div>
       </div>
-
-
-
 
       <!-- Upload Button na magoopen ng Upload Popup -->
       <button id = "openModal" class = "icon-plus">
@@ -271,10 +272,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </form>
         </div>
       </div>
-      <!-- ACTUAL COMMENTS -->
-      <div class="comments-container" id="comments-container">
+
+      <?php
+        // Updated query to include idUpload, like_count, and comment_count
+        $posts = $db->query("SELECT 
+            r.DisplayName, 
+            r.Username, 
+            p.idUpload, 
+            p.TitleBook, 
+            p.Caption, 
+            p.Picture, 
+            (SELECT COUNT(*) FROM likes WHERE idUpload = p.idUpload) AS like_count,
+            (SELECT COUNT(*) FROM comments WHERE idUpload = p.idUpload) AS comment_count
+        FROM userpost p
+        JOIN userregister r ON p.RegisterId = r.RegisterId
+        ORDER BY idUpload DESC")->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($posts as $post): ?>
+      <!-- COMMENTS -->
+      <div class="comments-container" id="comments-container-<?= $post['idUpload'] ?>" data-post-id="<?= $post['idUpload'] ?>">
             <!-- Close Button -->
-            <button class="close-btn" onclick="closeComments()">×</button>
+            <button class="close-btn" onclick="closeComments(<?= $post['idUpload'] ?>)">×</button>
     
             <!-- Comments Header -->
             <div class="comments-header">
@@ -282,18 +300,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
     
             <!-- Comments List -->
-            <div class="comments-list" id="comments-list">
+            <div class="comments-list" id="comments-list-<?= $post['idUpload'] ?>">
                 <!-- Where comments show -->
+                <?php
+                        // Fetch comments for the current post
+                        $comments = $db->prepare("SELECT 
+                            c.Comment, 
+                            c.dateCreated, 
+                            r.DisplayName AS username
+                        FROM comments c
+                        JOIN userregister r ON c.RegisterId = r.RegisterId
+                        WHERE c.idUpload = :postId
+                        ORDER BY c.dateCreated ASC");
+                        $comments->execute(['postId' => $post['idUpload']]);
+                        foreach ($comments->fetchAll(PDO::FETCH_ASSOC) as $comment): ?>
+                <div class="comment-item">
+                    <div class="comment-avatar"></div>
+                      <div class="comment-content">
+                        <p class="comment-username"><?= htmlspecialchars($comment['username']) ?></p>
+                        <p class="comment-text"><?= htmlspecialchars($comment['Comment']) ?></p>
+                      </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
     
             <!-- Add Comment Section -->
             <div class="comment-input-container">
-                <input type="text" id="comment-input" placeholder="Add a comment..." />
-                <button onclick="addComment()">Post</button>
+              <input type="text" id="comment-input-<?= $post['idUpload'] ?>" placeholder="Add a comment..." />
+              <button onclick="addComment(<?= $post['idUpload'] ?>)">Post</button>
             </div>
+        </div> <!-- End comments container -->
+        <?php endforeach; ?>
         </div>
     </div>
-  </div>
-</body>
+  </body>
 
 </html>

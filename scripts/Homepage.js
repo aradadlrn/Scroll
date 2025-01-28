@@ -164,3 +164,37 @@ function toggleLike(postId) {
       });
 }
 
+// Function to fetch and update comment count
+function updateCommentCount(postId) {
+  const commentCountElement = document.getElementById('comment-count-' + postId);
+
+  fetch(`./php-scripts/get_comment_count.php?postId=${postId}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        // Update the comment count dynamically
+        commentCountElement.textContent = data.commentCount;
+      } else {
+        console.error('Error from server:', data.message);
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching comment count:', error.message);
+    });
+}
+
+// Set up an interval to refresh comment counts every 5 seconds
+document.addEventListener('DOMContentLoaded', () => {
+  const postIds = document.querySelectorAll('[id^="comment-count-"]');
+  postIds.forEach((element) => {
+    const postId = element.id.split('-')[2]; // Extract the postId from the element ID
+    setInterval(() => {
+      updateCommentCount(postId);
+    }, 5000); // Update every 5 seconds
+  });
+});

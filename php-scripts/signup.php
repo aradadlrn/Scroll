@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result) {
             $response['success'] = true;
-            $response['redirect'] = "http://localhost/scroll-site2/Login.html";
+            $response['redirect'] = "http://localhost/Scroll/Login.html";
             echo json_encode($response);
             exit();
         } else {

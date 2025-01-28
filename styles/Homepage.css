@@ -877,13 +877,22 @@ body {
   align-items: flex-start;
   margin-bottom: 15px;
 }
-
+/*
 .comment-avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: #121716;
-  margin-right: 10px;
+}
+  */
+
+.comment-content {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.comment-content p {
+  color: var(--text-color);
 }
 
 .comment-username {
