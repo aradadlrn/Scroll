@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- The search box itself -->
         <div class="search-box">
           <img class="icon-search" src="./assets/icon-search0.svg" />
-          <input type="text" placeholder="Search" />
+          <input type="text" id="search-query" placeholder="Search" />
         </div>
     </header>
     
@@ -151,7 +151,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- ===== MAIN CONTENT (POST DISPLAY) AREA ===== -->
 
-    <!-- NOTE: For reference, ito yung dating <main> -->
     <div id="postContainer" class="postContainer">
       <div id="realPostContainer" class="realPostContainer">
       <!-- Dynamically Insert Posts -->

@@ -99,3 +99,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+// For the search button
+document.getElementById('search-query').addEventListener('input', function () {
+  const query = this.value.trim().toLowerCase(); // Convert input to lowercase for case-insensitive search
+
+  // Get all the posts
+  const posts = document.querySelectorAll('.actualPost');
+
+  posts.forEach(post => {
+      const title = post.querySelector('.postTitle').textContent.toLowerCase();
+
+      // Check if the title includes the search query
+      if (title.includes(query)) {
+          post.style.display = ''; // Show post if it matches the query
+      } else {
+          post.style.display = 'none'; // Hide post if it doesn't match
+      }
+  });
+});
