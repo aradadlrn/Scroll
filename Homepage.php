@@ -163,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       foreach ($posts as $post): ?>
         <div class="actualPost">
             <div class="postLeftContainer">
-                <div class="postCreator">Created by <?= htmlspecialchars($post['DisplayName']) ?>&emsp;
+                <div class="postCreator"><?= htmlspecialchars($post['DisplayName']) ?>&emsp;
                 <text class="postUsername">@<?= htmlspecialchars($post['Username']) ?></text>
                 </div>
                 <text class="postTitle"><?= htmlspecialchars($post['TitleBook']) ?></text>
@@ -197,13 +197,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="modal-header">Create Post
               <button id="closeModal" class="btn btn-close">&times;</button>
             </div>
-
-            <!-- Error/Success Messages -->
-            <?php if (!empty($error)): ?>
-                <div class="error">Error: <?= htmlspecialchars($error) ?></div>
-            <?php elseif(isset($_GET['success'])): ?>
-                <div class="success">Post created successfully!</div>
-            <?php endif; ?>
 
             <!-- Form -->
           <form method="POST" enctype="multipart/form-data" class="modal-content2">

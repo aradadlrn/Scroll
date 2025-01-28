@@ -365,7 +365,6 @@ body {
   width: 50%;
   min-width: 400px;
   min-height: 300px;
-  max-height: 300px;
   position: relative;
   overflow: hidden;
 }
@@ -382,10 +381,12 @@ body {
   flex: .6;
   padding: 25px;
   display: flex;
+  position: relative;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   background-color: var(--post-bg);
   background-size: cover;
+  padding-bottom: 40px;
 }
 
 .postCreator {
@@ -403,9 +404,11 @@ body {
 }
 
 .postTitle {
+  display: flex;
   font-size: 1.5em;
   font-weight: bold;
   color: var(--post-text);
+  padding-top: 15px;
 }
 
 .postDesc {
@@ -413,6 +416,10 @@ body {
   color: var(--post-text);
   line-height: 1.5;
   margin-top: 8px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  text-indent: 2em;
+  line-height: 1.7;
 }
 
 .postAuthor {
@@ -427,6 +434,10 @@ body {
   gap: 10px;
   width: 25px;
   height: 25px;
+  position: absolute;
+  bottom: 20px;
+  left: 26px;
+  align-items: center;
 }
 
 .postIcons img {
@@ -697,6 +708,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 19px;
+  justify-content: space-between;
 }
 
 /* Image Uploader Styling */
@@ -754,7 +766,7 @@ body {
 .descInput {
   color: var(--text-color);
   background-color: var(--sidebar-bg);
-  width: 319px;
+  width: 70%;
   height: 460px;
   padding: 10px;
   border: 1px solid var(--post-bg);
