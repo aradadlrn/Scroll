@@ -114,7 +114,7 @@ body {
   margin-left: 2px;
   outline: none;
   color: var(--text-color);
-  width: 120px;
+  width: 100%;
 }
 
 /* ========== SIDEBAR ========== */
