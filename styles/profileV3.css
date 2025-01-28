@@ -283,7 +283,7 @@ body {
 }
 
 /* Logout Modal Styles */
-.modal {
+.lmodal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   left: 0;
@@ -296,7 +296,7 @@ body {
   z-index: 1000; /* Ensure it's on top */
 }
 
-.modal-content {
+.lmodal-content {
   background-color: #fff;
   color: #000000;
   padding: 20px;
@@ -306,11 +306,11 @@ body {
   text-align: center;
 }
 
-.modal-buttons {
+.lmodal-buttons {
   margin-top: 20px;
 }
 
-.modal-buttons button {
+.lmodal-buttons button {
   padding: 10px 20px;
   margin: 0 10px;
   border: none;
