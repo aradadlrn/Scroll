@@ -10,6 +10,7 @@ function fetchAdminData() {
                 // Update totals
                 document.getElementById('users-count').textContent = data.data.total_users;
                 document.getElementById('posts-count').textContent = data.data.total_posts;
+                document.getElementById('comments-count').textContent = data.data.total_comments;
 
                 // Update top 3 active users
                 const topUsersList = document.getElementById('topThreeUsers');
@@ -28,6 +29,16 @@ function fetchAdminData() {
                     listItem.textContent = `${book.TitleBook} (${book.book_count} posts)`;
                     topBooksList.appendChild(listItem);
                 });
+
+                // Update top 3 commenters
+                const topCommentersList = document.getElementById('topThreeCommenter');
+                topCommentersList.innerHTML = ''; // Clear existing content
+                data.data.top_commenters.forEach(commenter => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${commenter.Username} (${commenter.comment_count} posts)`;
+                    topCommentersList.appendChild(listItem);
+                });
+
             } else {
                 console.error('Error fetching data:', data.error);
             }

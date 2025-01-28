@@ -342,7 +342,7 @@ body {
   background-color: var(--sidebar-bg);
   border: 1px solid var(--post-text);
   box-shadow: 1px 1px 1px var(--post-text);
-  width: 760px;
+  width: 500px;
   height: 160px;
   padding: 20px;
   border-radius: 10px;
@@ -373,18 +373,18 @@ body {
   margin-left: -11px;
 }
 
-.topUsers, .topBooks {
+.topUsers, .topBooks, .topCommenter {
   background-color: var(--sidebar-bg);
   border: 1px solid var(--post-text);
   box-shadow: 1px 1px 1px var(--post-text);
-  width: 759px;
+  width: 500px;
   height: 350px;
   margin-left: 10px;
   border-radius: 10px;
-  padding: 20px;
+  padding: 25px;
 }
 
-.topUsersTitle, .topBooksTitle {
+.topUsersTitle, .topBooksTitle, .topCommenterTitle {
   padding: 20px;
   font-weight: bold;
   font-size: 20px;
