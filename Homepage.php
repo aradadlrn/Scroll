@@ -74,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="./scripts/modal-homepage.js" defer></script>
   <script src="./scripts/Homepage.js" defer></script>
   <script src="./scripts/post.js" defer></script>
+  
   <title>SCROLL</title>
 </head>
 <body>
@@ -104,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <img class="nav-icon" src="./assets/icon-user0.svg" />
           <span>Profile</span>
         </a>
-        <a href="/Scroll/bookmarks.html" style="text-decoration: none;" class="nav-item">
+        <a href="/Scroll/bookmarks.php" style="text-decoration: none;" class="nav-item">
           <img class="nav-icon" src="./assets/icon-bookmark0.svg" />
           <span>Bookmarks</span>
         </a>

@@ -90,6 +90,20 @@ body {
     padding: 0 20px;
 }
 
+#bookmarks-heading {
+  position: absolute; /* Use absolute positioning for precise placement */
+  top: 0; /* Position at the top */
+  left: 0; /* Position at the left */
+  padding-left: 15rem; /* Optional padding for better spacing */
+  font-size: 3rem; /* Adjust heading size */
+  color: var(--text-color); /* Text color (adjust to match your theme) */
+  font-weight: bold; /* Make it stand out */
+  text-align: left; /* Align text to the left */
+  margin-bottom: 20px; /* Space below the heading */
+  
+  padding-bottom: 20px; /* Space between text and underline */   
+}
+
 /* ========== SIDEBAR ========== */
 .sidebar {
     grid-area: sidebar;
@@ -309,109 +323,9 @@ body {
     background-color: #ddd; /* Darker gray on hover */
   }
   
-  .bookmarks-container {
-    width: 85%;
-    margin: 2rem auto;
-    padding: 20px;
-}
 
-.bookmarks-container h1 {
-    color: var(--post-text);
-    margin: 25px;
-}
 
-.bookmarks-container .posts {
-    background-color: var(--sidebar-bg);
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 10px;
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    /* flex-wrap: wrap; */
-    flex-direction: column;
-    /* justify-content: space-between; */
-    margin-top: 5px;
-}
 
-.bookmarks-container .post-box {
-    background-color: var(--post-bg);
-    border-radius: 10px;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 60% 35%;
-    /* width: 49%; */
-    height: 290px;
-    gap: 15px;
-    margin-bottom: 10px;
-}
-
-.bookmarks-container .post-content {
-    margin-top: 20px;
-    color: var(--text-color);
-    overflow: hidden;
-}
-
-.bookmarks-container .post-title {
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.bookmarks-container .post-desc {
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 1.2;
-}
-
-.bookmarks-container .post-image {
-    width: 100%;
-    height: 255px;
-    border-radius: 10px;
-    object-fit: cover;
-}
-.posts {
-  display: grid;
-  gap: 1.5rem;
-}
-.post-box {
-  grid-template-columns: 1fr 250px;
-  align-items: start;
-  min-height: 200px;
-  padding: 1.5rem;
-}
-.post-content {
-  padding-right: 1.5rem;
-}
-.post-title {
-  font-size: 1.4rem;
-  margin-bottom: 0.8rem;
-  color: var(--text-color);
-}
-.post-desc {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--post-text);
-}
-
-.post-image {
-  height: 200px;
-  object-position: center;
-}
-
-.main-container.bookmark{
-    display: grid;
-    grid-template-columns: 220px auto;
-    grid-template-rows: 60px auto;
-    grid-template-areas:
-        "sidebar header"
-        "sidebar content";
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
 /* Responsive fixes */
 @media (max-width: 768px) {
   .post-box {

@@ -1,77 +1,327 @@
+/* ========== CONTENT AREA (MAIN) FOR BOOKMARKS ========== */
 .bookmarks-container {
-    height: fit-content;
-    width: 80vw;
-    position: relative;
-    margin-left: 90%;
-    margin-right: 90%;
-}
-
-.bookmarks-container h1 {
-    color: var(--post-text);
-    margin: 25px;
-}
-
-.bookmarks-container .posts {
-    background-color: var(--sidebar-bg);
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 10px;
-    width: 100%;
-    padding: 20px;
     display: flex;
-    /* flex-wrap: wrap; */
     flex-direction: column;
-    /* justify-content: space-between; */
-    margin-top: 5px;
-}
-
-.bookmarks-container .post-box {
-    background-color: var(--post-bg);
-    border-radius: 10px;
+    align-items: center; /* Keeps bookmarks centered */
+    justify-content: flex-start;
     padding: 20px;
-    display: grid;
-    grid-template-columns: 60% 35%;
-    /* width: 49%; */
-    height: 290px;
-    gap: 15px;
-    margin-bottom: 10px;
+    position: relative; /* Ensures relative positioning for h2 */
+    grid-area: content; 
 }
 
-.bookmarks-container .post-content {
-    margin-top: 20px;
-    color: var(--text-color);
-    overflow: hidden;
+.realBookmarkContainer {
+    grid-area: content;
+    overflow-y: auto;
+    background-color: var(--body-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
 }
 
-.bookmarks-container .post-title {
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
 
-.bookmarks-container .post-desc {
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 1.2;
-}
-
-.bookmarks-container .post-image {
-    width: 100%;
-    height: 255px;
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.main-container.bookmark{
-    display: grid;
-    grid-template-columns: 220px auto;
-    grid-template-rows: 60px auto;
-    grid-template-areas:
-        "sidebar header"
-        "sidebar content";
-    width: 100%;
-    height: 100vh;
+/* Dynamic Bookmark Format */
+.actualPost {
+    display: flex;
+    border-radius: 20px;
+    width: 60%;
+    min-width: 400px;
+    min-height: 250px;
     position: relative;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
+    background-color: var(--post-bg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+
+#realBookmarkContainer {
+    display: flex;
+    flex-direction: column; /* Ensures bookmarks stack vertically */
+    gap: 20px; /* Adds spacing between bookmarks */
+    padding: 20px; /* Optional: Adds padding to the container */
+    transition: transform 0.3s ease;
+}
+
+.postLeftContainer {
+    flex: .6;
+    padding: 25px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--post-bg);
+    background-size: cover;
+    padding-bottom: 40px;
+}
+
+.postCreator {
+    font-size: 0.85em;
+    color: var(--post-text);
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid var(--post-text);
+}
+
+.postUsername {
+    font-size: 0.85em;
+    color: var(--post-text);
+    font-weight: normal;
+}
+
+.postTitle {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--post-text);
+    padding-top: 15px;
+}
+
+.postDesc {
+    font-size: 0.9em;
+    color: var(--post-text);
+    line-height: 1.5;
+    margin-top: 8px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    text-indent: 2em;
+    line-height: 1.7;
+}
+
+.postIcons {
+    display: flex;
+    gap: 10px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    bottom: 20px;
+    left: 26px;
+    align-items: center;
+}
+
+.postIcons img {
+    filter: var(--icon-post-color);
+    cursor: pointer;
+}
+
+.postIcons img:hover {
+    filter: var(--icon-hover-filter);
+}
+
+.likeBtn,
+.bookmarkBtn {
+    display: flex;
+    gap: 10px;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.commentBtn {
+    display: flex;
+    gap: 10px;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.commentBtn img {
+    display: flex;
+    gap: 10px;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    filter: var(--icon-post-color);
+}
+
+.commentBtn img:hover {
+    filter: var(--icon-hover-filter);
+}
+
+.postRightContainer {
+    flex: 0.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--body-bg);
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Ensures the image does not overflow */
+}
+
+.postImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevents overflow issues */
+}
+
+.postImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    border-radius: 0 20px 20px 0; /* Keeps rounded corners on the right side */
+}
+
+/* Comments Section */
+.comments-section {
+    margin-top: 10px;
+    padding: 10px;
+    border-top: 1px solid var(--post-text);
+    background-color: var(--post-bg);
+}
+
+.comment {
+    font-size: 0.9em;
+    color: var(--post-text);
+    margin-bottom: 10px;
+}
+
+.comment strong {
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .actualPost {
+        flex-direction: column; /* Stack left and right containers vertically */
+        width: 100%; /* Full width on smaller screens */
+        min-width: unset; /* Remove minimum width */
+    }
+
+    .postLeftContainer,
+    .postRightContainer {
+        flex: 1; /* Take full width */
+    }
+
+    .postImage img {
+        width: 100%; /* Ensure the image fits the container */
+        height: auto; /* Maintain aspect ratio */
+    }
+}
+
+/* COMMENTS CONTAINER */
+.comments-container {
+    position: fixed;
+    bottom: 0;
+    right: -400px;
+    width: 400px;
+    height: 90%;
+    border-top-left-radius: 20px;
+    background-color: var(--sidebar-bg);
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .comments-container.open {
+    right: 0;
+  }
+  
+  /* Close Button */
+  .close-btn {
+    float: right;
+    padding: 20px;
+    background: none;
+    color: var(--text-color);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Comments Header */
+  .comments-header {
+    padding: 20px;
+    text-align: left;
+    padding-left: 30px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  /* Comments List */
+  .comments-list {
+    padding: 15px;
+    overflow-y: auto;
+    height: calc(100% - 50px);
+  }
+  
+  .comment-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+  
+  .comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #121716;
+    margin-right: 10px;
+  }
+  
+  .comment-username {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #fff;
+  }
+  
+  .comment-text {
+    color: #ccc;
+    font-size: 14px;
+  }
+  
+  /* Floating Input Section */
+  .comment-input-container {
+    display: flex;
+    background-color: var(--sidebar-bg);
+    padding:15px;
+    border-top: 1.5px solid var(--add-comment-input);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* add comment button */
+  .comment-input-container input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--add-comment-input);
+    color: #fff;
+    outline: none;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .comment-input-container input::placeholder {
+    color: #aaa;
+  }
+  
+  /* post button */
+  .comment-input-container button {
+    display: flex;
+    padding: 10px 15px;
+    background-color: #C95F50;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .comment-input-container button:hover {
+    background-color: rgb(197, 77, 61);
+    transition: transform 0.3s ease; /* Smooth transition */
+  }
+  
+  /* TRANSITIONS*/
+  .realPostContainer.moveLeft {
+    transform: translateX(-100px);
+    transition: transform 0.3s ease; 
+  }
