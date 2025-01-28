@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedMode = localStorage.getItem('theme') || 'dark'; // default to dark if no theme found
   if (savedMode === 'light') {
     document.body.classList.add('light');
-    iconImg.src = '/scroll-site2/assets/Vector.png'; // Light mode icon
+    iconImg.src = '/Scroll/assets/Vector.png'; // Light mode icon
   } else {
     document.body.classList.remove('light');
-    iconImg.src = '/scroll-site2/assets/moon0.svg'; // Dark mode icon
+    iconImg.src = '/Scroll/assets/moon0.svg'; // Dark mode icon
   }
 
   // Remove the no-transition class to enable transitions after theme is applied

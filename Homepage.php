@@ -2,7 +2,7 @@
 include("./php-scripts/connect.php");
 
 $error = '';
-$maxFileSize = 10 * 1024 * 1024; // 3MB
+$maxFileSize = 10 * 1024 * 1024; //MB NEED
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
@@ -70,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link id="theme-style" rel="stylesheet" href="./styles/Homepage.css">
   <script src="./scripts/ACTION.js" defer></script>
+  <script src="./scripts/comments.js" defer></script>
   <script src="./scripts/modal-homepage.js" defer></script>
   <script src="./scripts/Homepage.js" defer></script>
   <script src="./scripts/post.js" defer></script>
@@ -155,19 +156,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div id="realPostContainer" class="realPostContainer">
       <!-- Dynamically Insert Posts -->
       <?php
-      $posts = $db->query("SELECT * FROM userpost ORDER BY idUpload DESC")->fetchAll(PDO::FETCH_ASSOC);
+      $posts = $db->query("SELECT r.DisplayName, r.Username, p.TitleBook, p.Caption, p.Picture
+      FROM userpost p JOIN userregister r ON p.RegisterId = r.RegisterId
+      ORDER BY idUpload DESC")->fetchAll(PDO::FETCH_ASSOC);
 
       foreach ($posts as $post): ?>
-        <div class="samplePost">
+        <div class="actualPost">
             <div class="postLeftContainer">
-                <div class="postCreator">Created by • <?= htmlspecialchars($post['RegisterId']) ?></div>
+                <div class="postCreator">Created by <?= htmlspecialchars($post['DisplayName']) ?>&emsp;
+                <text class="postUsername">@<?= htmlspecialchars($post['Username']) ?></text>
+                </div>
                 <text class="postTitle"><?= htmlspecialchars($post['TitleBook']) ?></text>
                 <text class="postDesc"><?= htmlspecialchars($post['Caption']) ?></text>
                 <div class="postIcons">
                     <img class="likeBtn" src="./assets/icon-heart0.svg">
-                    <a href="comments.html">
-                        <img class="commentBtn" src="./assets/icon-message0.svg">
-                    </a>
+                    <button class="commentBtn" onclick="toggleComments()"><img class="commentBtnImg" src="./assets/icon-message0.svg"></button>
                     <img class="bookmarkBtn" src="./assets/icon-bookmark0.svg">
                 </div>
             </div>
@@ -240,31 +243,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <!-- Title Input -->
                 <textarea id="titleInput" class="titleInput" name="title_book" placeholder="What book is on your mind?" required></textarea>
 
-                <!-- Image Upload -->
-                <div class="modal-image-uploader">
-                    <label for="file-input" class="upload-label">
-                        <img id="preview-image" src="./assets/upload.png" alt="Upload Image">
-                        <span>Click to upload an image</span>
-                    </label>
-                    <input type="file" id="file-input" name="picture" accept="image/*" required style="display: none;">
+                <div class="contentInput">
+                  <!-- Description Input -->
+                  <textarea id="descriptionInput" class="descInput" name="caption" placeholder="Every Scroll has a story. Share yours!" required></textarea>
+
+                  <!-- Image Upload -->
+                  <div class="modal-image-uploader">
+                      <label for="file-input" class="upload-label">
+                          <img id="preview-image" src="./assets/upload.png" alt="Upload Image">
+                          <span>Click to upload an image</span>
+                      </label>
+                      <input type="file" id="file-input" name="picture" accept="image/*" required style="display: none;">
+                  </div>
                 </div>
 
-                <!-- Description Input -->
-                <textarea id="descriptionInput" class="descInput" name="caption" placeholder="Every Scroll has a story. Share yours!" required></textarea>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" id="postBtn" class="btn btn-secondary">Post</button>
+                  <button type="submit" id="postBtn" class="btn btn-secondary">Post</button>
                 </div>
             </div>
-            
-
-        </form>
-        
-        
+          </form>
+        </div>
+      </div>
+      <!-- ACTUAL COMMENTS -->
+      <div class="comments-container" id="comments-container">
+            <!-- Close Button -->
+            <button class="close-btn" onclick="closeComments()">×</button>
+    
+            <!-- Comments Header -->
+            <div class="comments-header">
+                <h2>Comments</h2>
+            </div>
+    
+            <!-- Comments List -->
+            <div class="comments-list" id="comments-list">
+                <!-- Where comments show -->
+            </div>
+    
+            <!-- Add Comment Section -->
+            <div class="comment-input-container">
+                <input type="text" id="comment-input" placeholder="Add a comment..." />
+                <button onclick="addComment()">Post</button>
+            </div>
+        </div>
     </div>
-  </div>
-    </div>
-
   </div>
 </body>
 

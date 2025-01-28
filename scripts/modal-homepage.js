@@ -2,6 +2,7 @@
 const openModal = document.getElementById('openModal');
 const closeModal = document.getElementById('closeModal');
 const modal = document.getElementById('modal');
+const comments = document.getElementById('comments-container');
 
 // Function to show the modal
 openModal.addEventListener('click', () => {
@@ -18,7 +19,30 @@ window.addEventListener('click', (event) => {
     if (event.target === modal) {
         modal.style.display = 'none'; // Hide the modal
     }
+    if (event.target === comments) {
+        comments.classList.remove('open'); // Hide the comments section
+    }
 });
+
+
+// For image upload preview
+document.getElementById('file-input').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    const uploaderDiv = document.querySelector('.modal-image-uploader');
+  
+    if (file) {
+      const reader = new FileReader();
+  
+      reader.onload = function (e) {
+        // Set the background image of the uploader div
+        uploaderDiv.style.backgroundImage = `url('${e.target.result}')`;
+        uploaderDiv.classList.add('has-image'); // Add a class when the image is set
+      };
+  
+      reader.readAsDataURL(file);
+    }
+  });
+  
 
 // Set RegisterID from localStorage when the page loads
 window.addEventListener('DOMContentLoaded', () => {

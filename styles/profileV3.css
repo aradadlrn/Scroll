@@ -11,12 +11,12 @@
   --profile-border: #ffffff;
   --search-box-border: #ffffffc0;
   --icon-filter: brightness(2); 
-  --icon-hover-filter: brightness(2);
+  --icon-hover-filter: brightness(0) invert(.6) sepia(1) saturate(200%) hue-rotate(300deg); /* what we use */
   --icon-plus-filter: brightness(2);
   --mode-toggle-bg: #263238;
   --nav-icon-bg: brightness(2);
   --text-hover-color: #2a2a2a30;
-  --icon-post-color: brightness(.75);
+  --icon-post-color: brightness(0) invert(1); /* what we use */
 }
 
 /* LIGHT THEME OVERRIDES */
@@ -32,12 +32,12 @@
   --profile-border: #111111;
   --search-box-border: #000000;
   --icon-filter: invert(1) brightness(0);
-  --icon-hover-filter: invert(1);
+  --icon-hover-filter: brightness(0) invert(.6) sepia(1) saturate(500%) hue-rotate(310deg); /* what we use */
   --icon-plus-filter: invert(1);
   --mode-toggle-bg: #D7C8A5;
-  --nav-icon-bg:invert(1);
+  --nav-icon-bg: invert(1);
   --text-hover-color: #e6d5b0;
-  --icon-post-color: brightness(1);
+  --icon-post-color: brightness(0) invert(0);
 }
 /* ========== RESET & BASE STYLES ========== */
 * {

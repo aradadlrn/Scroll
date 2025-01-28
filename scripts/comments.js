@@ -1,8 +1,6 @@
 // Dynamically load comments (simulated for now)
 const commentsList = document.getElementById('comments-list');
 
-
-
 // Add comment to the list
 function addComment() {
     const commentInput = document.getElementById('comment-input');
@@ -33,7 +31,19 @@ function addCommentToList(username, text) {
 
 // Close the comments section
 function closeComments() {
-    window.location.href = "Homepage.php";
+    const commentsSection = document.getElementById('comments-container');
+
+    commentsSection.classList.remove('open');
+    realPostContainer.classList.remove('moveLeft'); // Remove the moveLeft class
+}
+
+// For the comments to slide over
+function toggleComments() {
+    const commentsSection = document.getElementById('comments-container');
+    const realPostContainer = document.querySelector('.realPostContainer');
+
+    commentsSection.classList.toggle('open');
+    realPostContainer.classList.toggle('moveLeft');
 }
 
 // Load initial comments on page load

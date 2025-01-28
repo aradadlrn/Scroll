@@ -11,12 +11,13 @@
   --profile-border: #ffffff;
   --search-box-border: #ffffffc0;
   --icon-filter: brightness(2);
-  --icon-hover-filter: brightness(2);
+  --icon-hover-filter: brightness(0) invert(.6) sepia(1) saturate(200%) hue-rotate(300deg); /* what we use */
   --icon-plus-filter: brightness(2);
   --mode-toggle-bg: #263238;
   --nav-icon-bg: brightness(2);
   --text-hover-color: #2a2a2a30;
-  --icon-post-color: brightness(0.75);
+  --icon-post-color: brightness(0) invert(1); /* what we use */
+  --add-comment-input: #222c2a;
 }
 
 /* LIGHT THEME OVERRIDES */
@@ -32,12 +33,13 @@
   --profile-border: #111111;
   --search-box-border: #000000;
   --icon-filter: invert(1) brightness(0);
-  --icon-hover-filter: invert(1);
+  --icon-hover-filter: brightness(0) invert(.6) sepia(1) saturate(500%) hue-rotate(310deg); /* what we use */
   --icon-plus-filter: invert(1);
   --mode-toggle-bg: #D7C8A5;
   --nav-icon-bg: invert(1);
   --text-hover-color: #e6d5b0;
-  --icon-post-color: brightness(1);
+  --icon-post-color: brightness(0) invert(0);
+  --add-comment-input: #F3EAD5;
 }
 
 /* ========== RESET & BASE STYLES ========== */
@@ -351,35 +353,21 @@ body {
   background-color: var(--body-bg);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px;
+  transition: transform 0.3s ease;
 }
 
-/* Sample Post */
-.samplePost {
+/* Dynamic Post Format */
+.actualPost {
   display: flex;
-  background-color: var(--post-bg);
   border-radius: 20px;
-  margin-top: 20px;
-  margin-left: 15px;
-  width: 80%;
+  width: 50%;
   min-width: 400px;
-  height: 60%;max-height: 300px;
+  min-height: 300px;
+  max-height: 300px;
   position: relative;
   overflow: hidden;
-  gap: 20px;
-}
-
-
-.postImage {
-  width: 200px; /* Adjust to your preferred size */
-  height: 200px;
-  overflow: hidden; /* Prevents overflow if the image is too large */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0f0f0; /* Optional: adds a background */
-  border-radius: 8px; /* Optional: matches image rounding */
 }
 
 #realPostContainer {
@@ -387,29 +375,31 @@ body {
   flex-direction: column; /* Ensures posts stack vertically */
   gap: 20px; /* Adds spacing between posts */
   padding: 20px; /* Optional: Adds padding to the container */
-}
-
-.postImage img {
-  max-width: 100%; /* Ensures the image fits inside the container */
-  height: auto; /* Keeps the aspect ratio */
-  border-radius: 8px; /* Adds rounded corners */
-  object-fit: cover; /* Ensures the image fills its container nicely */
+  transition: transform 0.3s ease;
 }
 
 .postLeftContainer {
-  flex: 1;
-  background-color: var(--post-bg);
-  padding: 40px;
+  flex: .6;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: var(--post-bg);
+  background-size: cover;
 }
 
 .postCreator {
   font-size: 0.85em;
   color: var(--post-text);
+  font-weight: bold;
   padding-bottom: 10px;
   border-bottom: 0.5px solid var(--post-text);
+}
+
+.postUsername {
+  font-size: 0.85em;
+  color: var(--post-text);
+  font-weight: normal;
 }
 
 .postTitle {
@@ -440,7 +430,7 @@ body {
 }
 
 .postIcons img {
-  filter: var(--nav-icon-bg);
+  filter: var(--icon-post-color);
   cursor: pointer;
 }
 
@@ -448,8 +438,7 @@ body {
   filter: var(--icon-hover-filter);
 }
 
-.likeBtn, 
-.commentBtn, 
+.likeBtn,  
 .bookmarkBtn {
   display: flex;
   gap: 10px;
@@ -459,20 +448,54 @@ body {
   cursor: pointer;
 }
 
-.postRightContainer {
-  background-color: var(--post-text);
-  flex: .75;
+.commentBtn {
   display: flex;
-  background-color: #D9D9D9;
+  gap: 10px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.commentBtn img {
+  display: flex;
+  gap: 10px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  filter: var(--icon-post-color);
+}
+
+.commentBtn img:hover {
+  filter: var(--icon-hover-filter);
+}
+
+.postRightContainer {
+  flex: .4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--body-bg);
 }
 
 .postImage {
-  width: 100%;
-  height: 100%;
-  background: url('./assets/sample-image.jpg') no-repeat center center;
-  background-size: cover;
+  width: 100%; /* Adjust to your preferred size */
+  height: auto;
+  overflow: hidden; /* Prevents overflow if the image is too large */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--body-bg); /* Optional: adds a background */
 }
 
+.postImage img {
+  max-width: 100%; /* Ensures the image fits inside the container */
+  height: 100%; /* Keeps the aspect ratio */
+  object-fit: cover; /* Ensures the image fills its container nicely */
+}
 
 /* Button at bottom right */
 .icon-plus {
@@ -481,8 +504,8 @@ body {
   height: 50px;
   border-radius: 100%;
   border: none;
-  right: 135px;
-  bottom: 20px;
+  right: 75px;
+  bottom: 35px;
   cursor: pointer;
   background-color: #C95F50;
   display: flex;
@@ -584,7 +607,7 @@ body {
   display: flex; /* Use Flexbox for side-by-side layout */
   gap: 20px; /* Space between left and right containers */
   flex: 1; /* Take up remaining space in the modal */
-  overflow: hidden; /* Prevent overflow */
+  
 }
 
 /* Left Container - For Feature Icons */
@@ -670,11 +693,29 @@ body {
   resize: vertical;
 }
 
+.contentInput {
+  display: flex;
+  flex-direction: row;
+  gap: 19px;
+}
+
 /* Image Uploader Styling */
 .modal-image-uploader {
-  filter: var(--nav-icon-bg);
+  position: relative;
   padding: 20px;
   border: 1px dashed var(--post-bg);
+  width: 295px;
+  height: 460px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.modal-image-uploader.has-image .upload-label {
+  display: none; /* Hide label when image is uploaded */
 }
 
 .image-uploader {
@@ -692,6 +733,7 @@ body {
   width: 100%;
   height: 100%;
   cursor: pointer;
+  z-index: 1;
 }
 
 .upload-label img {
@@ -712,8 +754,8 @@ body {
 .descInput {
   color: var(--text-color);
   background-color: var(--sidebar-bg);
-  width: 100%;
-  height: 300px;
+  width: 319px;
+  height: 460px;
   padding: 10px;
   border: 1px solid var(--post-bg);
   border-radius: 4px;
@@ -738,6 +780,7 @@ body {
 /* Post button */
 .btn-secondary {
   display: flex;
+  justify-content: center;
   font-weight: bold;
   padding: 10px;
   width: 30%;
@@ -768,4 +811,124 @@ body {
   color: #C95F50;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* COMMENTS CONTAINER */
+.comments-container {
+  position: fixed;
+  bottom: 0;
+  right: -400px;
+  width: 400px;
+  height: 90%;
+  border-top-left-radius: 20px;
+  background-color: var(--sidebar-bg);
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+.comments-container.open {
+  right: 0;
+}
+
+/* Close Button */
+.close-btn {
+  float: right;
+  padding: 20px;
+  background: none;
+  color: var(--text-color);
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Comments Header */
+.comments-header {
+  padding: 20px;
+  text-align: left;
+  padding-left: 30px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Comments List */
+.comments-list {
+  padding: 15px;
+  overflow-y: auto;
+  height: calc(100% - 50px);
+}
+
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #121716;
+  margin-right: 10px;
+}
+
+.comment-username {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.comment-text {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* Floating Input Section */
+.comment-input-container {
+  display: flex;
+  background-color: var(--sidebar-bg);
+  padding:15px;
+  border-top: 1.5px solid var(--add-comment-input);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* add comment button */
+.comment-input-container input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--add-comment-input);
+  color: #fff;
+  outline: none;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.comment-input-container input::placeholder {
+  color: #aaa;
+}
+
+/* post button */
+.comment-input-container button {
+  display: flex;
+  padding: 10px 15px;
+  background-color: #C95F50;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.comment-input-container button:hover {
+  background-color: rgb(197, 77, 61);
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+/* TRANSITIONS*/
+.realPostContainer.moveLeft {
+  transform: translateX(-100px);
+  transition: transform 0.3s ease; 
 }
