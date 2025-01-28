@@ -1,5 +1,10 @@
 # Hi guys :)
 
+## Setup
+1. Make sure muna installed Git sa inyo. Search na lang kayo sa YT ng installation + setup, may iseset muna kayo na name and email.
+2. After that fork nyo your project.
+3. Clone nyo naman.
+
 ## Project Location
 - Make sure na its located sa => xampp > htdocs
 - Dito lang sya usually => C:\xampp\htdocs
