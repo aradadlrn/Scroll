@@ -455,8 +455,11 @@ body {
   gap: 10px;
   width: 20px;
   height: 20px;
-  margin-right: 10px;
   cursor: pointer;
+}
+
+.postIcons span {
+  font-size: 14px;
 }
 
 .commentBtn {

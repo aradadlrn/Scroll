@@ -152,35 +152,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- ===== MAIN CONTENT (POST DISPLAY) AREA ===== -->
 
     <div id="postContainer" class="postContainer">
-      <div id="realPostContainer" class="realPostContainer">
-      <!-- Dynamically Insert Posts -->
-      <?php
-      $posts = $db->query("SELECT r.DisplayName, r.Username, p.TitleBook, p.Caption, p.Picture
-      FROM userpost p JOIN userregister r ON p.RegisterId = r.RegisterId
-      ORDER BY idUpload DESC")->fetchAll(PDO::FETCH_ASSOC);
+    <div id="realPostContainer" class="realPostContainer">
+        <!-- Dynamically Insert Posts -->
+        <?php
+        // Updated query to include idUpload and like_count
+        $posts = $db->query("SELECT 
+            r.DisplayName, 
+            r.Username, 
+            p.idUpload, 
+            p.TitleBook, 
+            p.Caption, 
+            p.Picture, 
+            (SELECT COUNT(*) FROM likes WHERE idUpload = p.idUpload) AS like_count
+        FROM userpost p
+        JOIN userregister r ON p.RegisterId = r.RegisterId
+        ORDER BY idUpload DESC")->fetchAll(PDO::FETCH_ASSOC);
 
-      foreach ($posts as $post): ?>
-        <div class="actualPost">
-            <div class="postLeftContainer">
-                <div class="postCreator"><?= htmlspecialchars($post['DisplayName']) ?>&emsp;
-                <text class="postUsername">@<?= htmlspecialchars($post['Username']) ?></text>
+        foreach ($posts as $post): ?>
+            <div class="actualPost">
+                <div class="postLeftContainer">
+                    <div class="postCreator"><?= htmlspecialchars($post['DisplayName']) ?>
+                        <text class="postUsername">@<?= htmlspecialchars($post['Username']) ?></text>
+                    </div>
+                    <text class="postTitle"><?= htmlspecialchars($post['TitleBook']) ?></text>
+                    <text class="postDesc"><?= htmlspecialchars($post['Caption']) ?></text>
+                    <div class="postIcons">
+                        <img class="likeBtn" src="./assets/heart-nolike.png" onclick="toggleLike(<?= $post['idUpload'] ?>)">
+                        <span id="like-count-<?= $post['idUpload'] ?>" class="like-count"><?= htmlspecialchars($post['like_count']) ?></span>
+                        <button class="commentBtn" onclick="toggleComments()">
+                            <img class="commentBtnImg" src="./assets/icon-message0.svg">
+                        </button>
+                        <img class="bookmarkBtn" src="./assets/icon-bookmark0.svg">
+                    </div>
                 </div>
-                <text class="postTitle"><?= htmlspecialchars($post['TitleBook']) ?></text>
-                <text class="postDesc"><?= htmlspecialchars($post['Caption']) ?></text>
-                <div class="postIcons">
-                    <img class="likeBtn" src="./assets/icon-heart0.svg">
-                    <button class="commentBtn" onclick="toggleComments()"><img class="commentBtnImg" src="./assets/icon-message0.svg"></button>
-                    <img class="bookmarkBtn" src="./assets/icon-bookmark0.svg">
+                <div class="postRightContainer">
+                    <div class="postImage">
+                        <img src="data:image/jpeg;base64,<?= $post['Picture'] ?>" alt="Post Image">
+                    </div>
                 </div>
-            </div>
-            <div class="postRightContainer">
-                <div class="postImage">
-                    <img src="data:image/jpeg;base64,<?= $post['Picture'] ?>" alt="Post Image">
-                </div>
-              </div>
             </div>
           <?php endforeach; ?>
         </div>
+      </div>
+
 
 
 

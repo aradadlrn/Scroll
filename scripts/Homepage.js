@@ -118,3 +118,49 @@ document.getElementById('search-query').addEventListener('input', function () {
       }
   });
 });
+
+// Funtion for Likes
+function toggleLike(postId) {
+  const likeCountElement = document.getElementById('like-count-' + postId);
+  const likeButton = document.querySelector(`#like-count-${postId}`).previousElementSibling; // The like button image
+
+  fetch('./php-scripts/toggle_like.php', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          postId: postId,
+      }),
+  })
+      .then((response) => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json(); // Parse JSON
+      })
+      .then((data) => {
+          if (data.success) {
+              // Update the like count dynamically
+              likeCountElement.textContent = data.newLikeCount;
+
+              // Toggle like button image
+              if (likeButton.src.includes('heart-nolike.png')) {
+                likeButton.src = './assets/heart-withlike.png'; // Change to filled heart
+                likeButton.style.filter = 'none'; // Remove the filter (if any)
+              } else {
+                likeButton.src = './assets/heart-nolike.png'; // Change back to empty heart
+                likeButton.style.filter = ''; // Reset to the default filter state (or specify a filter you want)
+              }
+
+          } else {
+              console.error('Error from server:', data.message);
+              alert('Error: ' + data.message); // Display an alert with the error
+          }
+      })
+      .catch((error) => {
+          console.error('Network or parsing error:', error.message);
+          alert('An error occurred. Please try again later.');
+      });
+}
+
