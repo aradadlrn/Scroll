@@ -26,4 +26,8 @@ Perform a hard refresh:
 
 -- Ctrl + Shift + R
 
+## Latest
+
+If want nyo yung latest version lagay lang sa terminal
+=> git pull origin main
    
