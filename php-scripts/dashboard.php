@@ -6,24 +6,24 @@ $response = ['success' => false, 'error' => ''];
 
 try {
     // Fetch total number of users
-    $sql = "SELECT COUNT(*) AS total_users FROM scroll.userregister";
+    $sql = "SELECT COUNT(*) AS total_users FROM userregister";
     $stmt = $db->query($sql);
     $totalUsers = $stmt->fetch(PDO::FETCH_ASSOC)['total_users'];
 
     // Fetch total number of posts
-    $sql = "SELECT COUNT(*) AS total_posts FROM scroll.userpost";
+    $sql = "SELECT COUNT(*) AS total_posts FROM userpost";
     $stmt = $db->query($sql);
     $totalPosts = $stmt->fetch(PDO::FETCH_ASSOC)['total_posts'];
 
     // Fetch total number of comments
-    $sql = "SELECT COUNT(*) AS total_comments FROM scroll.comments";
+    $sql = "SELECT COUNT(*) AS total_comments FROM comments";
     $stmt = $db->query($sql);
     $totalComments = $stmt->fetch(PDO::FETCH_ASSOC)['total_comments'];
 
     // Fetch top 3 active users (based on number of posts)
     $sql = "SELECT u.Username, COUNT(*) AS post_count 
-    FROM scroll.userpost p 
-    INNER JOIN scroll.userregister u ON p.RegisterId = u.RegisterId 
+    FROM userpost p 
+    INNER JOIN userregister u ON p.RegisterId = u.RegisterId 
     GROUP BY p.RegisterId 
     ORDER BY post_count DESC 
     LIMIT 3";
@@ -32,7 +32,7 @@ try {
 
     // Fetch top 3 popular books (based on number of posts)
     $sql = "SELECT TitleBook, COUNT(*) AS book_count 
-            FROM scroll.userpost 
+            FROM userpost 
             GROUP BY TitleBook 
             ORDER BY book_count DESC 
             LIMIT 3";
@@ -41,7 +41,7 @@ try {
 
     // Fetch top 3 active commenters (based on number of comments)
     $sql = "SELECT u.Username, COUNT(*) AS comment_count 
-            FROM scroll.comments c JOIN scroll.userregister u ON c.RegisterId = u.RegisterId
+            FROM comments c JOIN userregister u ON c.RegisterId = u.RegisterId
             GROUP BY u.Username
             ORDER BY comment_count DESC 
             LIMIT 3";
