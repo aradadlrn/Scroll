@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Get the modal and its contents
   var modal = document.getElementById("myModal");
-  var content1 = document.querySelector(".modal-content1"); // Only using content1
-  var box1 = document.querySelector(".box1");
+  var content1 = document.querySelector(".modal-content-edit-profile"); // Only using content1
+  var box1 = document.querySelector(".edit-profile");
   var closeButtons = document.querySelectorAll(".close");
   var profilePicInput = document.getElementById("profilePic");
   var profilePicPreview = document.getElementById("profilePicPreview");

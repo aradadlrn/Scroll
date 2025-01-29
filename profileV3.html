@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/profileV3.css">
   <script src="./scripts/ACTION.js" defer></script>
-  <script src="./scripts/modal-upload.js" defer></script>
+  <script src="./scripts/upload.js" defer></script>
   <script src="./scripts/modal-homepage.js" defer></script>
   <script src="./scripts/Homepage.js" defer></script>
   <script src="./scripts/profile.js" defer></script>
@@ -33,7 +33,7 @@
         </div>
       <!-- Nav links -->
       <nav class="nav-links">
-        <a href="/Scroll/Homepage.php" class="nav-item">
+        <a href="/Scroll/Homepage.php" style="text-decoration: none;" class="nav-item">
           <img class="nav-icon" src="./assets/home-icon0.svg" />
           <span>For you</span>
         </a>
@@ -98,8 +98,9 @@
             <div class="username2">@username</div>
           </div>
           
-          <!-- Modal -->
-          <button class="box1">Edit Profile</button>
+          <!-- Edit Profile Modal Button -->
+          <button class="edit-profile">Edit Profile</button>
+
           <div class="followers-container">
             <div class="followers">
               <span class="bold">9</span> posts
@@ -143,24 +144,26 @@
       </div>
     </div>   
     
-      <!-- Modal structure -->
-      <div id="myModal" class="modal">
+      <!-- Actual Modal Structure for Edit Profile -->
+      <div id="myModal" class="edit-profile-modal">
         <!-- Modal Content for Edit Profile -->
-        <div class="modal-content1">
+        <div class="modal-content-edit-profile">
           <!-- Save Button -->
           <button id="saveButton" class="save-btn">Save</button>
           <span class="close">&times;</span>
           <p>Edit Profile</p>
-          <input type="hidden" id="imagePath" name="image_path" value="" />
-          <!-- Profile Picture Upload -->
-          <input type="file" id="profilePic" accept="image/*" onchange="previewImage(event)" />
-          <img id="profilePicPreview" src="" alt="Profile Picture Preview" />
+          <div class="avatar2">
+            <!-- Profile Picture Upload -->
+            <input type="file" id="profilePic" accept="image/*" onchange="previewImage(event)" />
+            <img id="profilePicPreview" src="" alt="Profile Picture Preview" />
+          </div> 
           <div class="uploadinstructions">Ready for a new look? Click your avatar!</div>
           <div class="display-name3">Display Name</div>
           <div class="username3">@username</div>
           <textarea class="bio-entry" placeholder="Enter your bio here..."></textarea>
         </div>
       </div>
+      
     </main>
 
     <!-- Upload Button na magoopen ng Upload Popup -->

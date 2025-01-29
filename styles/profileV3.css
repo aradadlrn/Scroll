@@ -390,9 +390,11 @@ body {
   font-size: 18px;
 }
 
-button.box1 {
+/* ================= EDIT PROFILE MODAL ================= */
+
+button.edit-profile {
   position: absolute;
-  top: 152px;
+  top: 170px;
   left: 240px;
   width: 120px;
   height: 40px;
@@ -409,12 +411,12 @@ button.box1 {
   font-weight: normal;
 }
 
-button.box1:hover {
+button.edit-profile:hover {
   background-color: var(--post-bg);
   opacity: 0.9;
 }
 
-.modal {
+.edit-profile-modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -426,7 +428,7 @@ button.box1:hover {
 }
 
 /* Shared Modal Content Styling */
-.modal-content1 {
+.modal-content-edit-profile {
   background-color: var(--sidebar-bg);
   margin: auto;
   margin-top: 10%;
@@ -463,6 +465,7 @@ button.box1:hover {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  overflow: hidden;
   display: none;
 }
 
@@ -580,6 +583,8 @@ textarea.bio-entry {
   opacity: 0.9;
 }
 
+/* END EDIT PROFILE */
+
 /* Profile Posts Section */
 .featuredposts {
   font-weight: bold;
@@ -642,7 +647,7 @@ textarea.bio-entry {
 
 .share {
   position: absolute;
-  top: 154px;
+  top: 170px;
   left: 370px;
   display: flex;
 }
@@ -678,7 +683,7 @@ textarea.bio-entry {
   filter: var(--icon-plus-filter);
 }
 
-/* ================= MODAL ================= */
+/* ================= UPLOAD MODAL ================= */
 .modal {
   display: none;
   position: fixed;

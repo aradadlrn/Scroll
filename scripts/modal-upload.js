@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
   // DOM Elements
   const modal = document.getElementById("myModal");
-  const content1 = document.querySelector(".modal-content1");
-  const box1 = document.querySelector(".box1");
+  const content1 = document.querySelector(".modal-content-edit-profile");
+  const editProfile = document.querySelector(".edit-profile");
   const closeButtons = document.querySelectorAll(".close");
   const profilePicInput = document.getElementById("profilePic");
   const profilePicPreview = document.getElementById("profilePicPreview");
   const saveButton = document.getElementById("saveButton");
-  const imagePathInput = document.getElementById("imagePath");
+  //const imagePathInput = document.getElementById("imagePath");
 
   // Profile Images
   const profileAvatarImg = document.querySelector('.profile-avatar img');
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Open modal
-  box1.addEventListener("click", () => {
+  editProfile.addEventListener("click", () => {
     content1.style.display = "block";
     modal.style.display = "flex";
     setModalAvatar();
