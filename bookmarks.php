@@ -108,13 +108,7 @@ try {
                             </div>
                             <text class="postTitle"><?= htmlspecialchars($post['TitleBook']) ?></text>
                             <text class="postDesc"><?= htmlspecialchars($post['Caption']) ?></text>
-                            <div class="postIcons">
-                                <img class="likeBtn" src="./assets/icon-heart0.svg">
-                                <button class="commentBtn" onclick="toggleComments(<?= $post['idUpload'] ?>)">
-                                    <img class="commentBtnImg" src="./assets/icon-message0.svg">
-                                </button>
-                                <img class="bookmarkBtn" src="./assets/icon-bookmark0.svg">
-                            </div>
+                            
                         </div>
                         <div class="postRightContainer">
                             <div class="postImage">

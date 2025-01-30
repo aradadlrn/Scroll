@@ -512,13 +512,14 @@ button.edit-profile:hover {
   top: 40%;
   left: 50%;
   border: 1px solid #ccc;
-  color: var(--text-color);
+  color: black;
   box-sizing: border-box;
   resize: none;
 }
 
-textarea.bio-entry {
+.bio-entry textarea{
   min-height: 100px;
+  color: black;
 }
 
 /* The Close Button */
