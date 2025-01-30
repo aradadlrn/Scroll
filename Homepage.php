@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <span id="comment-count-<?= $post['idUpload'] ?>" class="comment-count">
                           <?= htmlspecialchars($post['comment_count']) ?>
                         </span>
-                        <img class="bookmarkBtn" src="./assets/icon-bookmark0.svg">
+                        <img class="bookmarkBtn" src="./assets/icon-bookmark0.svg" onclick="toggleBookmark()">
                     </div>
                 </div>
                 <div class="postRightContainer">

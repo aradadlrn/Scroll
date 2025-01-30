@@ -45,7 +45,7 @@ try {
             </div>
             <!-- Nav links -->
             <nav class="nav-links">
-                <a href="/Scroll/Homepage.php" class="nav-item">
+                <a href="/Scroll/Homepage.php" style="text-decoration: none;" class="nav-item">
                     <img class="nav-icon" src="./assets/home-icon0.svg" />
                     <span>For you</span>
                 </a>

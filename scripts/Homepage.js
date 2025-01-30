@@ -198,3 +198,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 5000); // Update every 5 seconds
   });
 });
+
+function toggleBookmark(event) {
+  const bookmark = event.currentTarget; // Get the clicked bookmark button
+  const isBookmarked = bookmark.src.includes("icon-bookmark0.svg");
+
+  if (isBookmarked) {
+      bookmark.src = "./assets/bookmark-true.png"; // Change to bookmarked icon
+      bookmark.style.filter = 'none';
+      
+  } else {
+      bookmark.src = "./assets/icon-bookmark0.svg"; // Change back to unbookmarked
+  }
+}
+
+// Attach event listeners to all bookmark buttons after the page loads
+document.addEventListener("DOMContentLoaded", function () {
+  const bookmarks = document.querySelectorAll(".bookmarkBtn");
+  bookmarks.forEach(bookmark => {
+      bookmark.addEventListener("click", toggleBookmark);
+  });
+});
