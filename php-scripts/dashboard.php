@@ -48,6 +48,15 @@ try {
     $stmt = $db->query($sql);
     $topCommenters = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // Fetch user registrations per day for time series chart
+    $sql = "SELECT  DATE(dateCreated) AS date, COUNT(*) AS count 
+            FROM userregister 
+            GROUP BY DATE(dateCreated)
+            ORDER BY dateCreated ASC";
+    $stmt = $db->query($sql);
+    $userRegistrations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
     // Prepare response
     $response['success'] = true;
     $response['data'] = [
@@ -57,6 +66,7 @@ try {
         'top_users' => $topUsers,
         'top_books' => $topBooks,
         'top_commenters' => $topCommenters,
+        'user_registrations'=> $userRegistrations
     ];
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage());

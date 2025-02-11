@@ -191,6 +191,10 @@ body {
   cursor: pointer;
 }
 
+.profile-options img {
+  filter: var(--icon-filter);
+}
+
 .dropdown-content {
   display: none; /* Hidden by default */
   position: absolute;
@@ -318,12 +322,13 @@ body {
 .content-section {
   margin: 50px auto;
   padding: 20px;
+  display: flex;
+  flex-direction: row;
 }
 
 .tab-title {
   text-align: left;
-  margin-bottom: -30px;
-  margin-left: 10px;
+  padding: 30px;
   font-size: 48px;
   font-weight: bold;
 }
@@ -342,15 +347,16 @@ body {
   background-color: var(--sidebar-bg);
   border: 1px solid var(--post-text);
   box-shadow: 1px 1px 1px var(--post-text);
-  width: 500px;
+  width: 328px;
   height: 160px;
-  padding: 20px;
+  padding-top: 30px;
+  padding-bottom: 10px;
   border-radius: 10px;
 }
 
 .totalUsersLabel, .totalPostsLabel, .totalCommentsLabel {
-  padding: 30px;
-  font-size: 20px;
+  font-size: 18px;
+  align-items: center;
 }
 
 .number {
@@ -360,42 +366,91 @@ body {
   color: var(--text-color);
 }
 
-.bottomHalf {
-  display: flex;
+.leftSide {
+  flex: 1;
+  flex-direction: column;
+}
+.rightSide {
+  flex: 1;
+  flex-direction: column;
 }
 
 .topContainer {
   display: flex;
   gap: 10px;
-  flex-direction: row;
+  flex-direction: column;
   text-align: center;
   padding: 10px; /* Add some padding */
   margin-left: -11px;
+  margin-top: 40px;
 }
 
 .topUsers, .topBooks, .topCommenter {
+  display: flex;
+  align-items: center;
   background-color: var(--sidebar-bg);
   border: 1px solid var(--post-text);
   box-shadow: 1px 1px 1px var(--post-text);
   width: 500px;
-  height: 350px;
+  height: 220px;
   margin-left: 10px;
   border-radius: 10px;
   padding: 25px;
+  flex-direction: column;
 }
 
 .topUsersTitle, .topBooksTitle, .topCommenterTitle {
-  padding: 20px;
+  flex: .3;
+  padding: 10px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
+}
+
+.topBooksList, .topUsersList, .topCommenterList {
+  flex: .7;
+  align-items: center;
+  font-size: 15px;
 }
 
 /**/
 
 ol {
-  margin-top: 20px;
-  margin-left: 20px;
-  padding-left: 20px;
   text-align: left;
-  font-size: 30px;
+  font-size: 18px;
+}
+
+li {
+  text-indent: 20px;
+  padding-top: 5px;
+}
+
+.chartContainer {
+  width: 1020px;
+  height: 500px;
+  padding: 20px;
+  background: var(--sidebar-bg);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--post-text);
+  box-shadow: 1px 1px 1px var(--post-text);
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow: visible !important;
+}
+
+.chartTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* Chart Canvas */
+canvas#userChart {
+  width: 100% !important;
+  max-width: 800px;
+  height: 400px !important;
 }

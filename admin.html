@@ -8,6 +8,7 @@
   <script src="./scripts/ACTION.js" defer></script>
   <script src="./scripts/admin.js" defer></script>
   <script src="./scripts/Homepage.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>SCROLL - Admin Dashboard</title>
 </head>
 <body>
@@ -62,48 +63,64 @@
   </div>
 
   <!-- ============== ACTUAL DASHBOARD ===============-->
+  <div class="tab-title">
+    <text class="titleText">Admin Dashboard</text>
+  </div>
+
   <div class="content-section">
-    <div class="tab-title">
-        <text class="titleText">Admin Dashboard</text>
-    </div>
     <!-- Container for the 3 Totals -->
-    <div class="totals">
+    <div class="leftSide">
+      <div class="totals">
         <div class="totalUsers">
-            <text class="totalUsersLabel">Total No. of Users</text>
-            <div class="number" id="users-count">0</div>
+          <text class="totalUsersLabel">Total No. of Users</text>
+          <div class="number" id="users-count">0</div>
         </div>
         <div class="totalPosts">
-            <text class="totalPostsLabel">Total No. of Posts</text>
-            <div class="number" id="posts-count">0</div>
+          <text class="totalPostsLabel">Total No. of Posts</text>
+          <div class="number" id="posts-count">0</div>
         </div>
         <div class="totalComments">
-          <text class="totalUsersLabel">Total No. of Comments</text>
+          <text class="totalCommentsLabel">Total No. of Comments</text>
           <div class="number" id="comments-count">0</div>
         </div>
+      </div> <!-- end totals -->
+
+      <!-- Container for User Registration Chart -->
+      <div class="chartContainer">
+        <div class="chartTitle">Users Over Time</div>
+        <canvas id="userChart"></canvas>
       </div>
+    </div> <!-- end leftSide -->
 
     <!-- Container for 2nd half (Top 3) -->
-     <div class="bottomHalf">
-         <div class="topContainer">
+     <div class="rightSide">
+          <!-- Container for Activity Chart -->
+          <div class="topContainer">
             <div class="topUsers">
-                <text class="topUsersTitle">Top 3 Active Posters</text>
-                <ol id="topThreeUsers">
-                    <li>Loading...</li>
-                </ol>
+                <div class="topUsersTitle">Top 3 Active Posters</div>
+                <div class="topUsersList">
+                    <ol id="topThreeUsers">
+                        <li>Loading...</li>
+                    </ol>
+                </div>
             </div>
             <div class="topBooks">
-                <text class="topBooksTitle">Top 3 Popular Books</text>
-                <ol id="topThreeBooks">
-                    <li>Loading...</li>
-                </ol>
+                <div class="topBooksTitle">Top 3 Popular Books</div>
+                <div class="topBooksList">
+                    <ol id="topThreeBooks">
+                        <li>Loading...</li>
+                    </ol>
+                </div>
             </div>
             <div class="topCommenter">
-              <text class="topCommenterTitle">Top 3 Active Commenters</text>
-              <ol id="topThreeCommenter">
+              <div class="topCommenterTitle">Top 3 Active Commenters</div>
+              <div class="topCommenterList">
+                <ol id="topThreeCommenter">
                   <li>Loading...</li>
-              </ol>
+                </ol>
+              </div>
+            </div>
           </div>
-         </div>
      </div>
   </div>
 
